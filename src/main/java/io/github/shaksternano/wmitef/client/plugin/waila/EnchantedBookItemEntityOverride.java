@@ -5,7 +5,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 
 @Environment(EnvType.CLIENT)
 public enum EnchantedBookItemEntityOverride implements IEntityComponentProvider {
@@ -19,7 +19,7 @@ public enum EnchantedBookItemEntityOverride implements IEntityComponentProvider 
             ItemStack stack = accessor.<ItemEntity>getEntity().getStack();
             String modName = TooltipUtil.replaceEnchantmentModName(stack);
             if (modName != null) {
-                tooltip.set(WailaConstants.MOD_NAME_TAG, new LiteralText(IWailaConfig.get().getFormatting().formatModName(modName)));
+                tooltip.set(WailaConstants.MOD_NAME_TAG, Text.of(IWailaConfig.get().getFormatting().formatModName(modName)));
             }
         }
     }
