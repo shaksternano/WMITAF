@@ -21,7 +21,7 @@
   "custom": {
     "waila:plugins": {
       "id": "wmitef:waila_plugin",
-      "initializer": "io.github.shaksternano.wmitef.client.plugin.WmitefWailaPlugin"
+      "initializer": "io.github.shaksternano.wmitef.client.plugin.waila.WmitefWailaPlugin"
     }
   },
 

@@ -15,6 +15,11 @@ repositories {
 		name = "BAI"
 		url = "https://maven.bai.lol"
 	}
+
+	maven {
+		name = "Shedaniel"
+		url = "https://maven.shedaniel.me"
+	}
 }
 
 dependencies {
@@ -27,6 +32,9 @@ dependencies {
 
 	modCompileOnly "mcp.mobius.waila:wthit-api:fabric-${project.wthit_version}"
 	modRuntime "mcp.mobius.waila:wthit:fabric-${project.wthit_version}"
+
+	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.roughlyenoughitems_version}"
+	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.roughlyenoughitems_version}"
 }
 
 processResources {

@@ -1,7 +1,5 @@
-package io.github.shaksternano.wmitef.client.plugin;
+package io.github.shaksternano.wmitef.client.plugin.waila;
 
-import mcp.mobius.waila.api.IEventListener;
-import mcp.mobius.waila.api.IPluginConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
@@ -17,14 +15,13 @@ import java.util.Map;
 import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
-public class EnchantedBookOverride implements IEventListener {
+public final class TooltipUtil {
 
-    public static final IEventListener INSTANCE = new EnchantedBookOverride();
+    private TooltipUtil() {}
 
-    // Replaces "Minecraft" with the name of the mod that adds the enchantment on enchanted books.
-    @Override
+    // Returns the name of the mod that adds the first registered enchantment on an enchanted book.
     @Nullable
-    public String getHoveredItemModName(ItemStack stack, IPluginConfig config) {
+    public static String replaceEnchantmentModName(ItemStack stack) {
         if (stack.isOf(Items.ENCHANTED_BOOK)) {
             Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(stack);
 
@@ -34,8 +31,10 @@ public class EnchantedBookOverride implements IEventListener {
                 if (enchantmentId != null) {
                     String namespace = enchantmentId.getNamespace();
 
-                    // Don't need to do anything if it's a vanilla enchantment.
-                    if (!namespace.equals(Identifier.DEFAULT_NAMESPACE)) {
+                    // Return "Minecraft" if it's a vanilla enchantment.
+                    if (namespace.equals(Identifier.DEFAULT_NAMESPACE)) {
+                        return "Minecraft";
+                    } else {
                         Optional<ModContainer> modContainer = FabricLoader.getInstance().getModContainer(namespace);
 
                         if (modContainer.isPresent()) {
