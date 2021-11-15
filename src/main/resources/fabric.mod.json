@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "WMITEF",
-  "description": "What Mod Is This Enchantment From?\nAn addon for WTHIT that shows the name of the mod that adds an enchantment under an enchanted book instead of \"Minecraft\".",
+  "description": "What Mod Is This Enchantment From?\nAn addon for WTHIT and REI that shows the name of the mod that adds an enchantment in the tooltip of an enchanted book instead of \"Minecraft\".",
   "authors": [
     "ShaksterNano"
   ],
@@ -17,6 +17,9 @@
   "icon": "assets/wmitef/icon.png",
 
   "environment": "client",
+  "mixins": [
+    "wmitef.mixins.json"
+  ],
 
   "custom": {
     "waila:plugins": {
@@ -28,7 +31,10 @@
   "depends": {
     "fabricloader": ">=0.11.0",
     "minecraft": "1.17.x",
-    "java": ">=16",
-    "wthit": ">=3.11.0"
+    "java": ">=16"
+  },
+  "suggests": {
+    "wthit": ">=3.11.0",
+    "roughlyenoughitems": ">=6.1.315"
   }
 }

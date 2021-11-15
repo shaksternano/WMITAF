@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.shaksternano.wmitef.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "client": [
+    "client.ItemEntryDefinitionMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

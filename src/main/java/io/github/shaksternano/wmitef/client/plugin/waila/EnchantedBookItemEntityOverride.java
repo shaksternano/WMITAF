@@ -1,5 +1,6 @@
 package io.github.shaksternano.wmitef.client.plugin.waila;
 
+import io.github.shaksternano.wmitef.client.util.TooltipUtil;
 import mcp.mobius.waila.api.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -12,7 +13,7 @@ public enum EnchantedBookItemEntityOverride implements IEntityComponentProvider 
 
     INSTANCE;
 
-    // Sets the mod name in the tooltip of an enchanted book item entity to be the mod name of it's first enchantment.
+    // Sets the mod name in the Waila tooltip of an enchanted book item entity to be the mod name of it's first enchantment.
     @Override
     public void appendTail(ITooltip tooltip, IEntityAccessor accessor, IPluginConfig config) {
         if (config.getBoolean(WailaConstants.CONFIG_SHOW_MOD_NAME)) {
