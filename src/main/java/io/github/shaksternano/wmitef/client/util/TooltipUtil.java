@@ -46,6 +46,8 @@ public final class TooltipUtil {
 
                 if (modContainer.isPresent()) {
                     return modContainer.get().getMetadata().getName();
+                } else {
+                    return namespace;
                 }
             }
         }
