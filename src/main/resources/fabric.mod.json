@@ -36,5 +36,9 @@
   "suggests": {
     "wthit": ">=3.11.0",
     "roughlyenoughitems": ">=6.1.315"
+  },
+  "breaks": {
+    "wthit": "<3.11.0",
+    "roughlyenoughitems": "<6.1.315"
   }
 }
