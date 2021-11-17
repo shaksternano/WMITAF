@@ -23,7 +23,10 @@
     "waila:plugins": {
       "id": "wmitef:waila_plugin",
       "initializer": "io.github.shaksternano.wmitef.client.plugin.waila.WmitefWailaPlugin"
-    }
+    },
+
+    "notify_gradle_properties_url": "https://raw.githubusercontent.com/ShakterNano/WMITEF/1.18/gradle.properties",
+    "notify_gradle_properties_key": "mod_version"
   },
 
   "depends": {
