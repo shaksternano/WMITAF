@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "WMITAF",
-  "description": "What Mod Is This Actually From?\nAn addon for WTHIT and REI that shows the name of the mod that adds an enchantment in the tooltip of an enchanted book, or the mod that adds the effect in a potion, instead of \"Minecraft\".",
+  "description": "What Mod Is This Actually From?\nAn addon for WTHIT and REI that shows the name of the mod that adds an enchantment in the tooltip of an enchanted book, or the mod that adds the status effect of a potion, instead of \"Minecraft\".",
   "authors": [
     "ShaksterNano"
   ],
