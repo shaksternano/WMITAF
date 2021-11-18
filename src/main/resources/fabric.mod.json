@@ -1,31 +1,31 @@
 {
   "schemaVersion": 1,
-  "id": "wmitef",
+  "id": "wmitaf",
   "version": "${version}",
 
-  "name": "WMITEF",
-  "description": "What Mod Is This Enchantment From?\nAn addon for WTHIT and REI that shows the name of the mod that adds an enchantment in the tooltip of an enchanted book instead of \"Minecraft\".",
+  "name": "WMITAF",
+  "description": "What Mod Is This Actually From?\nAn addon for WTHIT and REI that shows the name of the mod that adds an enchantment in the tooltip of an enchanted book, or the mod that adds the status effect of a potion, instead of \"Minecraft\".",
   "authors": [
     "ShaksterNano"
   ],
   "contact": {
-    "homepage": "https://github.com/ShakterNano/WMITEF",
-    "sources": "https://github.com/ShakterNano/WMITEF",
-    "issues": "https://github.com/ShakterNano/WMITEF/issues"
+    "homepage": "https://github.com/ShakterNano/WMITAF",
+    "sources": "https://github.com/ShakterNano/WMITAF",
+    "issues": "https://github.com/ShakterNano/WMITAF/issues"
   },
 
   "license": "MIT",
-  "icon": "assets/wmitef/icon.png",
+  "icon": "assets/wmitaf/icon.png",
 
   "environment": "client",
 
   "custom": {
     "waila:plugins": {
-      "id": "wmitef:waila_plugin",
-      "initializer": "io.github.shaksternano.wmitef.client.plugin.waila.WmitefWailaPlugin"
+      "id": "wmitaf:waila_plugin",
+      "initializer": "io.github.shaksternano.wmitaf.client.plugin.waila.WmitafWailaPlugin"
     },
 
-    "notify_gradle_properties_url": "https://raw.githubusercontent.com/ShakterNano/WMITEF/1.18/gradle.properties",
+    "notify_gradle_properties_url": "https://raw.githubusercontent.com/ShakterNano/WMITAF/1.18/gradle.properties",
     "notify_gradle_properties_key": "mod_version"
   },
 
