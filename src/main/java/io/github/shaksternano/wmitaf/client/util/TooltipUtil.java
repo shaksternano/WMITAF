@@ -96,19 +96,20 @@ public final class TooltipUtil {
 
         if (stack.isOf(Items.ENCHANTED_BOOK)) {
             identifier = getFirstEnchantmentId(stack);
-        } else if (isAPotion(stack)) {
+        } else if (hasStatusEffects(stack)) {
             identifier = getFirstEffectId(stack);
         }
 
         return identifier;
     }
 
-    // Returns true if the ItemStack is a type of potion, otherwise returns false.
-    private static boolean isAPotion(ItemStack stack) {
+    // Returns true if the ItemStack is a type of item that carries status effects, otherwise returns false.
+    private static boolean hasStatusEffects(ItemStack stack) {
         return
             stack.isOf(Items.POTION) ||
             stack.isOf(Items.SPLASH_POTION) ||
             stack.isOf(Items.LINGERING_POTION) ||
+            stack.isOf(Items.TIPPED_ARROW) ||
             Registry.ITEM.getId(stack.getItem()).toString().equals(EXTRA_ALCHEMY_BREAKABLE_POTION_ID);
     }
 }
