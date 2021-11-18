@@ -26,7 +26,7 @@ public final class TooltipUtil {
     private TooltipUtil() {}
 
     // Item ID of Extra Alchemy's breakable potion.
-    public static final String EXTRA_ALCHEMY_BREAKABLE_POTION_ID = "extraalchemy:breakable_potion";
+    private static final String EXTRA_ALCHEMY_BREAKABLE_POTION_ID = "extraalchemy:breakable_potion";
 
     // Returns the name of the mod that adds the first enchantment on an enchanted book ItemStack or the first effect on a potion.
     @Nullable
