@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
-public enum ItemStackListener implements IEventListener {
+public enum ItemStackEventListener implements IEventListener {
 
     // This is an enum.
     INSTANCE;
@@ -18,6 +18,6 @@ public enum ItemStackListener implements IEventListener {
     @Nullable
     @Override
     public String getHoveredItemModName(ItemStack stack, IPluginConfig config) {
-        return TooltipUtil.replaceModName(stack);
+        return TooltipUtil.actualModName(stack);
     }
 }

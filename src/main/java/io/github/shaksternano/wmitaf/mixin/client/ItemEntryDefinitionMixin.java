@@ -20,7 +20,7 @@ abstract class ItemEntryDefinitionMixin {
 
     // Sets the mod name in the REI tooltip to be the name of the mod that adds the first enchantment on an item if it's an enchanted book, or the name of the mod that adds the first effect on an item if it's a potion.
     @Inject(method = "getIdentifier(Lme/shedaniel/rei/api/common/entry/EntryStack;Lnet/minecraft/item/ItemStack;)Lnet/minecraft/util/Identifier;", at = @At("HEAD"), cancellable = true, require = 0)
-    private void enchantedBookModNameOverride(EntryStack<ItemStack> entry, ItemStack value, CallbackInfoReturnable<Identifier> cir) {
+    private void reiModNameOverride(EntryStack<ItemStack> entry, ItemStack value, CallbackInfoReturnable<Identifier> cir) {
         Identifier identifier = TooltipUtil.getIdentifierFromStackData(value);
         if (identifier != null) {
             cir.setReturnValue(identifier);

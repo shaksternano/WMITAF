@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 
 @Environment(EnvType.CLIENT)
-public enum ItemEntityProvider implements IEntityComponentProvider {
+public enum ItemEntityComponent implements IEntityComponentProvider {
 
     // This is an enum.
     INSTANCE;
@@ -19,7 +19,7 @@ public enum ItemEntityProvider implements IEntityComponentProvider {
     public void appendTail(ITooltip tooltip, IEntityAccessor accessor, IPluginConfig config) {
         if (config.getBoolean(WailaConstants.CONFIG_SHOW_MOD_NAME)) {
             ItemStack stack = accessor.<ItemEntity>getEntity().getStack();
-            String modName = TooltipUtil.replaceModName(stack);
+            String modName = TooltipUtil.actualModName(stack);
             if (modName != null) {
                 tooltip.set(WailaConstants.MOD_NAME_TAG, Text.of(IWailaConfig.get().getFormatting().formatModName(modName)));
             }
