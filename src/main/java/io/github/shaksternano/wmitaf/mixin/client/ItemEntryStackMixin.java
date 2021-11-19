@@ -22,7 +22,7 @@ abstract class ItemEntryStackMixin extends AbstractEntryStack {
 
     // Sets the mod name in the REI tooltip to be the name of the mod that adds the first enchantment on an item if it's an enchanted book, or the name of the mod that adds the first effect on an item if it's a potion.
     @Redirect(method = "getTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/Identifier;getNamespace()Ljava/lang/String;"), require = 0)
-    private String ReiModNameOverride(Identifier getId) {
+    private String reiModNameOverride(Identifier getId) {
         if (getType() == EntryStack.Type.ITEM) {
             Identifier identifier = TooltipUtil.getIdentifierFromStackData((ItemStack) getObject());
             if (identifier != null) {
