@@ -2,9 +2,10 @@
   "required": true,
   "minVersion": "0.8",
   "package": "io.github.shaksternano.wmitaf.mixin",
-  "compatibilityLevel": "JAVA_16",
+  "compatibilityLevel": "JAVA_8",
   "client": [
-    "client.ItemEntryDefinitionMixin"
+    "client.ItemEntryStackMixin",
+    "client.WailaClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -30,7 +30,7 @@ public final class TooltipUtil {
 
     // Returns the name of the mod that adds the first enchantment on an enchanted book ItemStack or the first effect on a potion.
     @Nullable
-    public static String replaceModName(ItemStack stack) {
+    public static String actualModName(ItemStack stack) {
         Identifier identifier = getIdentifierFromStackData(stack);
         return getModNameFromId(identifier);
     }
@@ -43,7 +43,7 @@ public final class TooltipUtil {
 
         if (enchantmentsIterator.hasNext()) {
             Enchantment enchantment = enchantmentsIterator.next();
-            return EnchantmentHelper.getEnchantmentId(enchantment);
+            return Registry.ENCHANTMENT.getId(enchantment);
         } else {
             return null;
         }
@@ -61,7 +61,7 @@ public final class TooltipUtil {
 
             if (effectId != null) {
                 // Don't make potion types from mods with vanilla effects seem like they're from vanilla, for example a breakable potion from Extra Alchemy with the vanilla night vision effect.
-                if (effectId.getNamespace().equals(Identifier.DEFAULT_NAMESPACE)) {
+                if (effectId.getNamespace().equals("minecraft")) {
                     return Registry.ITEM.getId(stack.getItem());
                 } else {
                     return effectId;
@@ -94,7 +94,7 @@ public final class TooltipUtil {
     public static Identifier getIdentifierFromStackData(ItemStack stack) {
         Identifier identifier = null;
 
-        if (stack.isOf(Items.ENCHANTED_BOOK)) {
+        if (stack.getItem().equals(Items.ENCHANTED_BOOK)) {
             identifier = getFirstEnchantmentId(stack);
         } else if (hasStatusEffects(stack)) {
             identifier = getFirstEffectId(stack);
@@ -106,10 +106,10 @@ public final class TooltipUtil {
     // Returns true if the ItemStack is a type of item that carries status effects, otherwise returns false.
     private static boolean hasStatusEffects(ItemStack stack) {
         return
-            stack.isOf(Items.POTION) ||
-            stack.isOf(Items.SPLASH_POTION) ||
-            stack.isOf(Items.LINGERING_POTION) ||
-            stack.isOf(Items.TIPPED_ARROW) ||
+            stack.getItem().equals(Items.POTION) ||
+            stack.getItem().equals(Items.SPLASH_POTION) ||
+            stack.getItem().equals(Items.LINGERING_POTION) ||
+            stack.getItem().equals(Items.TIPPED_ARROW) ||
             Registry.ITEM.getId(stack.getItem()).toString().equals(EXTRA_ALCHEMY_BREAKABLE_POTION_ID);
     }
 }
