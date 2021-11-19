@@ -30,7 +30,7 @@ public final class TooltipUtil {
 
     // Returns the name of the mod that adds the first enchantment on an enchanted book ItemStack or the first effect on a potion.
     @Nullable
-    public static String replaceModName(ItemStack stack) {
+    public static String actualModName(ItemStack stack) {
         Identifier identifier = getIdentifierFromStackData(stack);
         return getModNameFromId(identifier);
     }
