@@ -19,6 +19,7 @@ public enum OtherClientPlayerEntityComponent implements IEntityComponentProvider
     // ShaksterNano
     private static final String DEVELOPER_UUID = "65972a6e-02b9-4701-96a7-0f76c08c2e5d";
 
+    // Give dev custom Waila name formatting.
     @Override
     public void appendHead(List<Text> tooltip, IEntityAccessor accessor, IPluginConfig config) {
         Entity entity = accessor.getEntity();
@@ -28,6 +29,7 @@ public enum OtherClientPlayerEntityComponent implements IEntityComponentProvider
         }
     }
 
+    // Give dev custom Waila mod name.
     @Override
     public void appendTail(List<Text> tooltip, IEntityAccessor accessor, IPluginConfig config) {
         if (config.get(WailaConstants.CONFIG_SHOW_MOD_NAME)) {
