@@ -12,7 +12,7 @@ import net.minecraft.text.Text;
 
 import java.util.List;
 
-@SuppressWarnings({"unchecked", "rawtypes"})
+@SuppressWarnings({"rawtypes", "unchecked"})
 @Environment(EnvType.CLIENT)
 public enum ItemEntityComponent implements IEntityComponentProvider {
 
