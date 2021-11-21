@@ -6,8 +6,8 @@ Requires WTHIT v2.10.9 or above and/or REI v5.11.187 or above.
 
 Without WMITAF:
 
-<img src="https://i.imgur.com/gVfb1dE.png" alt="Without WMITEF" width="250">
+<img src="https://i.imgur.com/gVfb1dE.png" alt="Without WMITAF" width="250">
 
 With WMITAF:
 
-<img src="https://i.imgur.com/8K8wpqj.png" alt="With WMITEF" width="290">
+<img src="https://i.imgur.com/8K8wpqj.png" alt="With WMITAF" width="290">
