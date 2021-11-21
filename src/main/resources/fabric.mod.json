@@ -18,6 +18,9 @@
   "icon": "assets/wmitaf/icon.png",
 
   "environment": "client",
+  "mixins": [
+    "wmitaf.mixins.json"
+  ],
 
   "custom": {
     "waila:plugins": {
@@ -35,10 +38,12 @@
     "java": ">=17"
   },
   "suggests": {
-    "wthit": ">=4.1.0"
+    "wthit": ">=4.1.0",
+    "roughlyenoughitems": ">=7.0.337"
   },
   "breaks": {
     "wthit": "<4.1.0",
+    "roughlyenoughitems": "<7.0.337",
     "wmitef": "*"
   }
 }
