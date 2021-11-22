@@ -1,6 +1,6 @@
 package io.github.shaksternano.wmitaf.client.plugin.waila;
 
-import io.github.shaksternano.wmitaf.client.util.TooltipUtil;
+import io.github.shaksternano.wmitaf.client.util.ModNameUtil;
 import mcp.mobius.waila.api.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -19,7 +19,7 @@ public enum ItemEntityComponent implements IEntityComponentProvider {
     public void appendTail(ITooltip tooltip, IEntityAccessor accessor, IPluginConfig config) {
         if (config.getBoolean(WailaConstants.CONFIG_SHOW_MOD_NAME)) {
             ItemStack stack = accessor.<ItemEntity>getEntity().getStack();
-            String modName = TooltipUtil.actualModName(stack);
+            String modName = ModNameUtil.actualModName(stack);
             if (modName != null) {
                 tooltip.set(WailaConstants.MOD_NAME_TAG, Text.of(IWailaConfig.get().getFormatting().formatModName(modName)));
             }
