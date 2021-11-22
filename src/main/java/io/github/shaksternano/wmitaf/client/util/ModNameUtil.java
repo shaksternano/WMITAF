@@ -8,6 +8,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.PotionUtil;
@@ -21,18 +22,55 @@ import java.util.Optional;
 import java.util.Set;
 
 @Environment(EnvType.CLIENT)
-public final class TooltipUtil {
+public final class ModNameUtil {
 
-    private TooltipUtil() {}
+    private ModNameUtil() {}
 
     // Item ID of Extra Alchemy's breakable potion.
     private static final String EXTRA_ALCHEMY_BREAKABLE_POTION_ID = "extraalchemy:breakable_potion";
+    // Item ID of Patchouli's guide book.
+    private static final String PATCHOULI_BOOK_ID = "patchouli:guide_book";
+    // The ID of the NBT tag storing the Patchouli book ID.
+    private static final String PATCHOULI_BOOK_TAG = "patchouli:book";
 
     // Returns the name of the mod that adds the first enchantment on an enchanted book ItemStack or the first effect on a potion.
     @Nullable
     public static String actualModName(ItemStack stack) {
         Identifier identifier = getIdentifierFromStackData(stack);
         return getModNameFromId(identifier);
+    }
+
+    // Returns the Identifier of the first enchantment on an enchanted book, or the Identifier of the first effect on a potion.
+    @Nullable
+    public static Identifier getIdentifierFromStackData(ItemStack stack) {
+        Identifier identifier = null;
+
+        if (stack.isOf(Items.ENCHANTED_BOOK)) {
+            identifier = getFirstEnchantmentId(stack);
+        } else if (hasStatusEffects(stack)) {
+            identifier = getFirstEffectId(stack);
+        } else if (hasId(stack.getItem(), PATCHOULI_BOOK_ID)) {
+            identifier = getPatchouliBookId(stack);
+        }
+
+        return identifier;
+    }
+
+    // Gets the name of a mod from an Identifier.
+    @Nullable
+    private static String getModNameFromId(@Nullable Identifier identifier) {
+        if (identifier != null) {
+            String namespace = identifier.getNamespace();
+            Optional<ModContainer> modContainer = FabricLoader.getInstance().getModContainer(namespace);
+
+            if (modContainer.isPresent()) {
+                return modContainer.get().getMetadata().getName();
+            } else {
+                return namespace;
+            }
+        } else {
+            return null;
+        }
     }
 
     // Returns the Identifier of the first enchantment on an ItemStack.
@@ -72,35 +110,18 @@ public final class TooltipUtil {
         return null;
     }
 
-    // Gets the name of a mod from an Identifier.
+    // Returns the book Identifier in stored in the NBT of a Patchouli book.
+    @SuppressWarnings("ConstantConditions")
     @Nullable
-    private static String getModNameFromId(@Nullable Identifier identifier) {
-        if (identifier != null) {
-            String namespace = identifier.getNamespace();
-            Optional<ModContainer> modContainer = FabricLoader.getInstance().getModContainer(namespace);
-
-            if (modContainer.isPresent()) {
-                return modContainer.get().getMetadata().getName();
-            } else {
-                return namespace;
+    private static Identifier getPatchouliBookId(ItemStack stack) {
+        if (stack.hasNbt()) {
+            String bookId = stack.getNbt().getString(PATCHOULI_BOOK_TAG);
+            if (!bookId.equals("")) {
+                return new Identifier(bookId);
             }
-        } else {
-            return null;
-        }
-    }
-
-    // Returns the Identifier of the first enchantment on an enchanted book, or the Identifier of the first effect on a potion.
-    @Nullable
-    public static Identifier getIdentifierFromStackData(ItemStack stack) {
-        Identifier identifier = null;
-
-        if (stack.isOf(Items.ENCHANTED_BOOK)) {
-            identifier = getFirstEnchantmentId(stack);
-        } else if (hasStatusEffects(stack)) {
-            identifier = getFirstEffectId(stack);
         }
 
-        return identifier;
+        return null;
     }
 
     // Returns true if the ItemStack is a type of item that carries status effects, otherwise returns false.
@@ -110,6 +131,11 @@ public final class TooltipUtil {
             stack.isOf(Items.SPLASH_POTION) ||
             stack.isOf(Items.LINGERING_POTION) ||
             stack.isOf(Items.TIPPED_ARROW) ||
-            Registry.ITEM.getId(stack.getItem()).toString().equals(EXTRA_ALCHEMY_BREAKABLE_POTION_ID);
+            hasId(stack.getItem(), EXTRA_ALCHEMY_BREAKABLE_POTION_ID);
+    }
+
+    // Returns true if the ID of the item matches the string passed as an argument.
+    private static boolean hasId(Item item, String id) {
+        return Registry.ITEM.getId(item).toString().equals(id);
     }
 }

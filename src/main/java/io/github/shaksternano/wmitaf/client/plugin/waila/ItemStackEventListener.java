@@ -1,6 +1,6 @@
 package io.github.shaksternano.wmitaf.client.plugin.waila;
 
-import io.github.shaksternano.wmitaf.client.util.TooltipUtil;
+import io.github.shaksternano.wmitaf.client.util.ModNameUtil;
 import mcp.mobius.waila.api.IEventListener;
 import mcp.mobius.waila.api.IPluginConfig;
 import net.fabricmc.api.EnvType;
@@ -18,6 +18,6 @@ public enum ItemStackEventListener implements IEventListener {
     @Nullable
     @Override
     public String getHoveredItemModName(ItemStack stack, IPluginConfig config) {
-        return TooltipUtil.actualModName(stack);
+        return ModNameUtil.actualModName(stack);
     }
 }
