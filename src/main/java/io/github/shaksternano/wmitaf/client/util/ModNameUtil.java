@@ -22,9 +22,9 @@ import java.util.Optional;
 import java.util.Set;
 
 @Environment(EnvType.CLIENT)
-public final class TooltipUtil {
+public final class ModNameUtil {
 
-    private TooltipUtil() {}
+    private ModNameUtil() {}
 
     // Item ID of Extra Alchemy's breakable potion.
     private static final String EXTRA_ALCHEMY_BREAKABLE_POTION_ID = "extraalchemy:breakable_potion";

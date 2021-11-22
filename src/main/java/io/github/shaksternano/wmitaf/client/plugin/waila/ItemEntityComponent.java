@@ -1,6 +1,6 @@
 package io.github.shaksternano.wmitaf.client.plugin.waila;
 
-import io.github.shaksternano.wmitaf.client.util.TooltipUtil;
+import io.github.shaksternano.wmitaf.client.util.ModNameUtil;
 import mcp.mobius.waila.Waila;
 import mcp.mobius.waila.api.*;
 import net.fabricmc.api.EnvType;
@@ -26,7 +26,7 @@ public enum ItemEntityComponent implements IEntityComponentProvider {
             Entity entity = accessor.getEntity();
             if (entity instanceof ItemEntity) {
                 ItemStack stack = ((ItemEntity) entity).getStack();
-                String modName = TooltipUtil.actualModName(stack);
+                String modName = ModNameUtil.actualModName(stack);
                 if (modName != null) {
                     ((ITaggableList) tooltip).setTag(WailaConstants.MOD_NAME_TAG, Text.of(String.format(Waila.CONFIG.get().getFormatting().getModName(), modName)));
                 }

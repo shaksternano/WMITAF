@@ -1,6 +1,6 @@
 package io.github.shaksternano.wmitaf.mixin.client;
 
-import io.github.shaksternano.wmitaf.client.util.TooltipUtil;
+import io.github.shaksternano.wmitaf.client.util.ModNameUtil;
 import me.shedaniel.rei.api.EntryStack;
 import me.shedaniel.rei.impl.AbstractEntryStack;
 import me.shedaniel.rei.impl.ItemEntryStack;
@@ -24,7 +24,7 @@ abstract class ItemEntryStackMixin extends AbstractEntryStack {
     @Redirect(method = "getTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/Identifier;getNamespace()Ljava/lang/String;"), require = 0)
     private String reiModNameOverride(Identifier getId) {
         if (getType() == EntryStack.Type.ITEM) {
-            Identifier identifier = TooltipUtil.getIdentifierFromStackData((ItemStack) getObject());
+            Identifier identifier = ModNameUtil.getIdentifierFromStackData((ItemStack) getObject());
             if (identifier != null) {
                 return identifier.getNamespace();
             }
