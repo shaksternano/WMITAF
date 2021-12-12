@@ -18,6 +18,6 @@ public enum ItemStackEventListener implements IEventListener {
     @Nullable
     @Override
     public String getHoveredItemModName(ItemStack stack, IPluginConfig config) {
-        return ModNameUtil.actualModName(stack);
+        return ModNameUtil.getActualModName(stack);
     }
 }

@@ -19,7 +19,7 @@ public enum ItemEntityComponent implements IEntityComponentProvider {
     public void appendTail(ITooltip tooltip, IEntityAccessor accessor, IPluginConfig config) {
         if (config.getBoolean(WailaConstants.CONFIG_SHOW_MOD_NAME)) {
             ItemStack stack = accessor.<ItemEntity>getEntity().getStack();
-            String modName = ModNameUtil.actualModName(stack);
+            String modName = ModNameUtil.getActualModName(stack);
             if (modName != null) {
                 tooltip.set(WailaConstants.MOD_NAME_TAG, Text.of(IWailaConfig.get().getFormatting().formatModName(modName)));
             }

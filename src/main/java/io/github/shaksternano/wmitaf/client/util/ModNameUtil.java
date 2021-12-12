@@ -26,18 +26,25 @@ public final class ModNameUtil {
 
     private ModNameUtil() {}
 
-    // Item ID of Extra Alchemy's breakable potion.
+    // The Item ID of Extra Alchemy's breakable potion.
     private static final String EXTRA_ALCHEMY_BREAKABLE_POTION_ID = "extraalchemy:breakable_potion";
-    // Item ID of Patchouli's guide book.
+    // The Item ID of Patchouli's guide book.
     private static final String PATCHOULI_BOOK_ID = "patchouli:guide_book";
     // The ID of the NBT tag storing the Patchouli book ID.
     private static final String PATCHOULI_BOOK_TAG = "patchouli:book";
 
+    // Returns the ID of the mod that adds the first enchantment on an enchanted book ItemStack or the first effect on a potion.
+    @Nullable
+    public static String getActualModId(ItemStack stack) {
+        Identifier identifier = getIdentifierFromStackData(stack);
+        return identifier == null ? null : identifier.getNamespace();
+    }
+
     // Returns the name of the mod that adds the first enchantment on an enchanted book ItemStack or the first effect on a potion.
     @Nullable
-    public static String actualModName(ItemStack stack) {
-        Identifier identifier = getIdentifierFromStackData(stack);
-        return getModNameFromId(identifier);
+    public static String getActualModName(ItemStack stack) {
+        String modId = getActualModId(stack);
+        return getModNameFromId(modId);
     }
 
     // Returns the Identifier of the first enchantment on an enchanted book, or the Identifier of the first effect on a potion.
@@ -56,11 +63,10 @@ public final class ModNameUtil {
         return identifier;
     }
 
-    // Gets the name of a mod from an Identifier.
+    // Gets the name of a mod from the mod's ID.
     @Nullable
-    private static String getModNameFromId(@Nullable Identifier identifier) {
-        if (identifier != null) {
-            String namespace = identifier.getNamespace();
+    private static String getModNameFromId(@Nullable String namespace) {
+        if (namespace != null) {
             Optional<ModContainer> modContainer = FabricLoader.getInstance().getModContainer(namespace);
 
             if (modContainer.isPresent()) {
