@@ -7,7 +7,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 
 /**
  * For caching a {@link Text} name and a {@link Text} mod name related to an entity.
@@ -17,36 +16,34 @@ import org.spongepowered.asm.mixin.Unique;
 abstract class EntityMixin implements TextHolder {
 
     @Nullable
-    @Unique
-    private Text textName;
+    private Text wmitaf$textName;
 
     @Nullable
-    @Unique
-    private Text textModName;
+    private Text wmitaf$textModName;
 
     @Nullable
     @Override
     public Text wmitaf$getTextName() {
-        return textName;
+        return wmitaf$textName;
     }
 
     @Override
     public void wmitaf$setTextName(@Nullable Text textName) {
-        if (this.textName == null) {
-            this.textName = textName;
+        if (wmitaf$textName == null) {
+            wmitaf$textName = textName;
         }
     }
 
     @Nullable
     @Override
     public Text wmitaf$getTextModName() {
-        return textModName;
+        return wmitaf$textModName;
     }
 
     @Override
     public void wmitaf$setTextModName(@Nullable Text textModName) {
-        if (this.textModName == null) {
-            this.textModName = textModName;
+        if (wmitaf$textModName == null) {
+            wmitaf$textModName = textModName;
         }
     }
 }

@@ -6,7 +6,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 
 /**
  * For caching a Mod ID and Mod name related to an entity.
@@ -16,36 +15,34 @@ import org.spongepowered.asm.mixin.Unique;
 abstract class ItemStackMixin implements ModNameHolder {
 
     @Nullable
-    @Unique
-    private String modId;
+    private String wmitaf$modId;
 
     @Nullable
-    @Unique
-    private String modName;
+    private String wmitaf$modName;
 
     @Nullable
     @Override
     public String wmitaf$getModId() {
-        return modId;
+        return wmitaf$modId;
     }
 
     @Override
     public void wmitaf$setModId(@Nullable String modId) {
-        if (this.modId == null) {
-            this.modId = modId;
+        if (wmitaf$modId == null) {
+            wmitaf$modId = modId;
         }
     }
 
     @Override
     @Nullable
     public String wmitaf$getModName() {
-        return modName;
+        return wmitaf$modName;
     }
 
     @Override
     public void wmitaf$setModName(@Nullable String modName) {
-        if (this.modName == null) {
-            this.modName = modName;
+        if (wmitaf$modName == null) {
+            wmitaf$modName = modName;
         }
     }
 }
