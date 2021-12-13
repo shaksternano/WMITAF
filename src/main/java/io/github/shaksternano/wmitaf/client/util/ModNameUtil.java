@@ -87,22 +87,10 @@ public final class ModNameUtil {
     public static void setWailaTooltip(ITooltip tooltip, Entity entity, String toDisplay, boolean modName, boolean needsToBeChanged) {
         TextHolder textHolder = ((TextHolder) entity);
 
-        Text textName;
-        Identifier wailaId;
-        Function<String, String> stringFormat;
-        Consumer<Text> setText;
-
-        if (modName) {
-            textName = textHolder.wmitaf$getTextModName();
-            wailaId = WailaConstants.MOD_NAME_TAG;
-            stringFormat = IWailaConfig.get().getFormatting()::formatModName;
-            setText = textHolder::wmitaf$setTextModName;
-        } else {
-            textName = textHolder.wmitaf$getTextName();
-            wailaId = WailaConstants.OBJECT_NAME_TAG;
-            stringFormat = IWailaConfig.get().getFormatting()::formatEntityName;
-            setText = textHolder::wmitaf$setTextName;
-        }
+        Text textName = modName ? textHolder.wmitaf$getTextModName() : textHolder.wmitaf$getTextName();
+        Identifier wailaId = modName ? WailaConstants.MOD_NAME_TAG : WailaConstants.OBJECT_NAME_TAG;
+        Function<String, String> stringFormat = modName ? IWailaConfig.get().getFormatting()::formatModName : IWailaConfig.get().getFormatting()::formatEntityName;
+        Consumer<Text> setText = modName ? textHolder::wmitaf$setTextModName : textHolder::wmitaf$setTextName;
 
         if (textName == null) {
             if (needsToBeChanged) {
