@@ -11,6 +11,7 @@ import net.fabricmc.api.Environment;
 @Environment(EnvType.CLIENT)
 public class WmitafReiClientPlugin implements REIClientPlugin {
 
+    // Registers the REI plugins.
     @SuppressWarnings({"deprecation", "UnstableApiUsage"})
     @Override
     public void registerEntrySettingsAdapters(EntrySettingsAdapterRegistry registry) {

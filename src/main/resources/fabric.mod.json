@@ -23,6 +23,9 @@
       "io.github.shaksternano.wmitaf.client.plugin.rei.WmitafReiClientPlugin"
     ]
   },
+  "mixins": [
+    "wmitaf.mixins.json"
+  ],
 
   "custom": {
     "waila:plugins": {

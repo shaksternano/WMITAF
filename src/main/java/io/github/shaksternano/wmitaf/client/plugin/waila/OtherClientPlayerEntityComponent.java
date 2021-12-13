@@ -1,10 +1,10 @@
 package io.github.shaksternano.wmitaf.client.plugin.waila;
 
+import io.github.shaksternano.wmitaf.client.util.ModNameUtil;
 import mcp.mobius.waila.api.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.network.OtherClientPlayerEntity;
-import net.minecraft.text.Text;
 
 @Environment(EnvType.CLIENT)
 public enum OtherClientPlayerEntityComponent implements IEntityComponentProvider {
@@ -19,10 +19,9 @@ public enum OtherClientPlayerEntityComponent implements IEntityComponentProvider
     @Override
     public void appendHead(ITooltip tooltip, IEntityAccessor accessor, IPluginConfig config) {
         OtherClientPlayerEntity player = accessor.getEntity();
+
         if (player.getUuidAsString().equals(DEVELOPER_UUID)) {
-            // Red and underlined.
-            String displayName = "§c§n" + player.getDisplayName().getString() + "§n§c";
-            tooltip.set(WailaConstants.OBJECT_NAME_TAG, Text.of(IWailaConfig.get().getFormatting().formatEntityName(displayName)));
+            ModNameUtil.setWailaTooltip(tooltip, player, "§c§n" + player.getDisplayName().getString() + "§n§c", false, true);
         }
     }
 
@@ -31,8 +30,9 @@ public enum OtherClientPlayerEntityComponent implements IEntityComponentProvider
     public void appendTail(ITooltip tooltip, IEntityAccessor accessor, IPluginConfig config) {
         if (config.getBoolean(WailaConstants.CONFIG_SHOW_MOD_NAME)) {
             OtherClientPlayerEntity player = accessor.getEntity();
+
             if (player.getUuidAsString().equals(DEVELOPER_UUID)) {
-                tooltip.set(WailaConstants.MOD_NAME_TAG, Text.of(IWailaConfig.get().getFormatting().formatModName("WMITAF Developer")));
+                ModNameUtil.setWailaTooltip(tooltip, player, "WMITAF Developer", true, true);
             }
         }
     }

@@ -12,7 +12,7 @@ import net.minecraft.entity.ItemEntity;
 @Environment(EnvType.CLIENT)
 public final class WmitafWailaPlugin implements IWailaPlugin {
 
-    // Registers the overrides.
+    // Registers the Waila plugins.
     @Override
     public void register(IRegistrar registrar) {
         registrar.addEventListener(ItemStackEventListener.INSTANCE, 1500);
