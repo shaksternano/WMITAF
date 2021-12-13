@@ -12,7 +12,7 @@ group = project.maven_group
 
 repositories {
 	maven {
-		name = "BAI"
+		name = "Bad As Intended"
 		url = "https://maven.bai.lol"
 	}
 
@@ -34,7 +34,7 @@ dependencies {
 	modRuntime "mcp.mobius.waila:wthit:fabric-${project.wthit_version}"
 
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.roughlyenoughitems_version}"
-	modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:${project.roughlyenoughitems_version}"
+	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.roughlyenoughitems_version}"
 }
 
 processResources {

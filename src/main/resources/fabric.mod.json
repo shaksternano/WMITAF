@@ -18,9 +18,11 @@
   "icon": "assets/wmitaf/icon.png",
 
   "environment": "client",
-  "mixins": [
-    "wmitaf.mixins.json"
-  ],
+  "entrypoints": {
+    "rei": [
+      "io.github.shaksternano.wmitaf.client.plugin.rei.WmitafReiClientPlugin"
+    ]
+  },
 
   "custom": {
     "waila:plugins": {
@@ -34,16 +36,15 @@
 
   "depends": {
     "fabricloader": ">=0.11.0",
-    "minecraft": "1.17.x",
+    "minecraft": ">=1.17",
     "java": ">=16"
   },
   "suggests": {
     "wthit": ">=3.11.0",
-    "roughlyenoughitems": ">=6.1.315"
+    "roughlyenoughitems": ">=6.2.351"
   },
   "breaks": {
     "wthit": "<3.11.0",
-    "roughlyenoughitems": "<6.1.315",
-    "wmitef": "*"
+    "roughlyenoughitems": "<6.2.351"
   }
 }
