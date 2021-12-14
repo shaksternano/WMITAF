@@ -52,9 +52,8 @@ public final class ModNameUtil {
         if (modName == null) {
             if (modNameNeedsToBeChanged(stack)) {
                 String modId = getActualModId(stack);
-                String newModName = getModNameFromId(modId);
-                modNameHolder.wmitaf$setModName(newModName);
-                return newModName;
+                modName = getModNameFromId(modId);
+                modNameHolder.wmitaf$setModName(modName);
             }
         }
 
@@ -73,9 +72,8 @@ public final class ModNameUtil {
                 Identifier identifier = getIdentifierFromStackData(stack);
 
                 if (identifier != null) {
-                    String newModId = identifier.getNamespace();
-                    modNameHolder.wmitaf$setModId(newModId);
-                    return newModId;
+                    modId = identifier.getNamespace();
+                    modNameHolder.wmitaf$setModId(modId);
                 }
             }
         }
@@ -94,13 +92,12 @@ public final class ModNameUtil {
 
         if (textName == null) {
             if (needsToBeChanged) {
-                Text newTextName = Text.of(stringFormat.apply(toDisplay));
-                setText.accept(newTextName);
-                tooltip.set(wailaId, newTextName);
+                textName = Text.of(stringFormat.apply(toDisplay));
+                setText.accept(textName);
             }
-        } else {
-            tooltip.set(wailaId, textName);
         }
+
+        tooltip.set(wailaId, textName);
     }
 
     // Returns true if stack should have its mod name changed, otherwise returns false.

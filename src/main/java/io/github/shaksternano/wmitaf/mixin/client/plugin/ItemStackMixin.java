@@ -1,4 +1,4 @@
-package io.github.shaksternano.wmitaf.mixin.client;
+package io.github.shaksternano.wmitaf.mixin.client.plugin;
 
 import io.github.shaksternano.wmitaf.client.accessor.ModNameHolder;
 import net.fabricmc.api.EnvType;
