@@ -28,9 +28,7 @@ abstract class ItemStackMixin implements ModNameHolder {
 
     @Override
     public void wmitaf$setModId(@Nullable String modId) {
-        if (wmitaf$modId == null) {
-            wmitaf$modId = modId;
-        }
+        wmitaf$modId = modId;
     }
 
     @Override
@@ -41,8 +39,6 @@ abstract class ItemStackMixin implements ModNameHolder {
 
     @Override
     public void wmitaf$setModName(@Nullable String modName) {
-        if (wmitaf$modName == null) {
-            wmitaf$modName = modName;
-        }
+        wmitaf$modName = modName;
     }
 }

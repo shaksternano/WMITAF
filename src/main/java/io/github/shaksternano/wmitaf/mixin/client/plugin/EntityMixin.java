@@ -29,9 +29,7 @@ abstract class EntityMixin implements TextHolder {
 
     @Override
     public void wmitaf$setTextName(@Nullable Text textName) {
-        if (wmitaf$textName == null) {
-            wmitaf$textName = textName;
-        }
+        wmitaf$textName = textName;
     }
 
     @Nullable
@@ -42,8 +40,6 @@ abstract class EntityMixin implements TextHolder {
 
     @Override
     public void wmitaf$setTextModName(@Nullable Text textModName) {
-        if (wmitaf$textModName == null) {
-            wmitaf$textModName = textModName;
-        }
+        wmitaf$textModName = textModName;
     }
 }
