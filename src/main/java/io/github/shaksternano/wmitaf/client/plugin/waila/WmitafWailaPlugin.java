@@ -17,7 +17,6 @@ public final class WmitafWailaPlugin implements IWailaPlugin {
     public void register(IRegistrar registrar) {
         registrar.addEventListener(ItemStackEventListener.INSTANCE, 1500);
         registrar.addComponent(ItemEntityComponent.INSTANCE, TooltipPosition.TAIL, ItemEntity.class, 1500);
-        registrar.addComponent(OtherClientPlayerEntityComponent.INSTANCE, TooltipPosition.HEAD, OtherClientPlayerEntity.class, 1500);
         registrar.addComponent(OtherClientPlayerEntityComponent.INSTANCE, TooltipPosition.TAIL, OtherClientPlayerEntity.class, 1500);
     }
 }
