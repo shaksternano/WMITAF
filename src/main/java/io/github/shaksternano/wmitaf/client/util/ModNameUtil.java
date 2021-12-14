@@ -33,9 +33,9 @@ public final class ModNameUtil {
 
     private ModNameUtil() {}
 
-    // Item ID of Extra Alchemy's breakable potion.
+    // The Item ID of Extra Alchemy's breakable potion.
     private static final String EXTRA_ALCHEMY_BREAKABLE_POTION_ID = "extraalchemy:breakable_potion";
-    // Item ID of Patchouli's guide book.
+    // The Item ID of Patchouli's guide book.
     private static final String PATCHOULI_BOOK_ID = "patchouli:guide_book";
     // The ID of the NBT tag storing the Patchouli book ID.
     private static final String PATCHOULI_BOOK_TAG = "patchouli:book";
