@@ -16,7 +16,6 @@ public final class WmitafWailaPlugin implements IWailaPlugin {
     @Override
     public void register(IRegistrar registrar) {
         registrar.addComponent(ItemEntityComponent.INSTANCE, TooltipPosition.TAIL, ItemEntity.class, 1500);
-        registrar.addComponent(OtherClientPlayerEntityComponent.INSTANCE, TooltipPosition.HEAD, OtherClientPlayerEntity.class, 1500);
         registrar.addComponent(OtherClientPlayerEntityComponent.INSTANCE, TooltipPosition.TAIL, OtherClientPlayerEntity.class, 1500);
     }
 }
