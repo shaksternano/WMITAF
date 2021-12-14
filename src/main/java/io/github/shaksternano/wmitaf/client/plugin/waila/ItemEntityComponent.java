@@ -6,7 +6,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
 
 @Environment(EnvType.CLIENT)
 public enum ItemEntityComponent implements IEntityComponentProvider {
@@ -18,10 +17,13 @@ public enum ItemEntityComponent implements IEntityComponentProvider {
     @Override
     public void appendTail(ITooltip tooltip, IEntityAccessor accessor, IPluginConfig config) {
         if (config.getBoolean(WailaConstants.CONFIG_SHOW_MOD_NAME)) {
-            ItemStack stack = accessor.<ItemEntity>getEntity().getStack();
+            ItemEntity itemEntity = accessor.getEntity();
+            ItemStack stack = itemEntity.getStack();
+
             String modName = ModNameUtil.getActualModName(stack);
+
             if (modName != null) {
-                tooltip.set(WailaConstants.MOD_NAME_TAG, Text.of(IWailaConfig.get().getFormatting().formatModName(modName)));
+                ModNameUtil.setWailaTooltip(tooltip, itemEntity, modName, true, ModNameUtil.modNameNeedsToBeChanged(stack));
             }
         }
     }

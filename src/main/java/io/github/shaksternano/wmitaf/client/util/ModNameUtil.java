@@ -1,17 +1,24 @@
 package io.github.shaksternano.wmitaf.client.util;
 
+import io.github.shaksternano.wmitaf.client.accessor.ModNameHolder;
+import io.github.shaksternano.wmitaf.client.accessor.TextHolder;
+import mcp.mobius.waila.api.ITooltip;
+import mcp.mobius.waila.api.IWailaConfig;
+import mcp.mobius.waila.api.WailaConstants;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.PotionUtil;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.Nullable;
@@ -20,6 +27,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 @Environment(EnvType.CLIENT)
 public final class ModNameUtil {
@@ -34,22 +43,74 @@ public final class ModNameUtil {
     private static final String PATCHOULI_BOOK_TAG = "patchouli:book";
 
     // Returns the name of the mod that adds the first enchantment on an enchanted book ItemStack or the first effect on a potion.
+    @SuppressWarnings("ConstantConditions")
     @Nullable
     public static String getActualModName(ItemStack stack) {
-        String modId = getActualModId(stack);
-        return getModNameFromId(modId);
+        ModNameHolder modNameHolder = (ModNameHolder) (Object) stack;
+        String modName = modNameHolder.wmitaf$getModName();
+
+        if (modName == null) {
+            if (modNameNeedsToBeChanged(stack)) {
+                String modId = getActualModId(stack);
+                modName = getModNameFromId(modId);
+                modNameHolder.wmitaf$setModName(modName);
+            }
+        }
+
+        return modName;
     }
 
     // Returns the ID of the mod that adds the first enchantment on an enchanted book ItemStack or the first effect on a potion.
+    @SuppressWarnings("ConstantConditions")
     @Nullable
     public static String getActualModId(ItemStack stack) {
-        Identifier identifier = getIdentifierFromStackData(stack);
-        return identifier == null ? null : identifier.getNamespace();
+        ModNameHolder modNameHolder = (ModNameHolder) (Object) stack;
+        String modId = modNameHolder.wmitaf$getModId();
+
+        if (modId == null) {
+            if (modNameNeedsToBeChanged(stack)) {
+                Identifier identifier = getIdentifierFromStackData(stack);
+
+                if (identifier != null) {
+                    modId = identifier.getNamespace();
+                    modNameHolder.wmitaf$setModId(modId);
+                }
+            }
+        }
+
+        return modId;
+    }
+
+    // Sets the text of the Waila tooltip for an entity.
+    public static void setWailaTooltip(ITooltip tooltip, Entity entity, String toDisplay, boolean modName, boolean needsToBeChanged) {
+        TextHolder textHolder = ((TextHolder) entity);
+
+        Text textName = modName ? textHolder.wmitaf$getTextModName() : textHolder.wmitaf$getTextName();
+        Identifier wailaId = modName ? WailaConstants.MOD_NAME_TAG : WailaConstants.OBJECT_NAME_TAG;
+        Function<String, String> stringFormat = modName ? IWailaConfig.get().getFormatting()::formatModName : IWailaConfig.get().getFormatting()::formatEntityName;
+        Consumer<Text> setText = modName ? textHolder::wmitaf$setTextModName : textHolder::wmitaf$setTextName;
+
+        if (textName == null) {
+            if (needsToBeChanged) {
+                textName = Text.of(stringFormat.apply(toDisplay));
+                setText.accept(textName);
+            }
+        }
+
+        tooltip.set(wailaId, textName);
+    }
+
+    // Returns true if stack should have its mod name changed, otherwise returns false.
+    public static boolean modNameNeedsToBeChanged(ItemStack stack) {
+        return
+            stack.isOf(Items.ENCHANTED_BOOK) ||
+            hasStatusEffects(stack) ||
+            hasId(stack.getItem(), PATCHOULI_BOOK_ID);
     }
 
     // Returns the Identifier of the first enchantment on an enchanted book, or the Identifier of the first effect on a potion.
     @Nullable
-    public static Identifier getIdentifierFromStackData(ItemStack stack) {
+    private static Identifier getIdentifierFromStackData(ItemStack stack) {
         Identifier identifier = null;
 
         if (stack.isOf(Items.ENCHANTED_BOOK)) {
@@ -133,11 +194,11 @@ public final class ModNameUtil {
     // Returns true if the ItemStack is a type of item that carries status effects, otherwise returns false.
     private static boolean hasStatusEffects(ItemStack stack) {
         return
-                stack.isOf(Items.POTION) ||
-                        stack.isOf(Items.SPLASH_POTION) ||
-                        stack.isOf(Items.LINGERING_POTION) ||
-                        stack.isOf(Items.TIPPED_ARROW) ||
-                        hasId(stack.getItem(), EXTRA_ALCHEMY_BREAKABLE_POTION_ID);
+            stack.isOf(Items.POTION) ||
+            stack.isOf(Items.SPLASH_POTION) ||
+            stack.isOf(Items.LINGERING_POTION) ||
+            stack.isOf(Items.TIPPED_ARROW) ||
+            hasId(stack.getItem(), EXTRA_ALCHEMY_BREAKABLE_POTION_ID);
     }
 
     // Returns true if the ID of the item matches the string passed as an argument.
