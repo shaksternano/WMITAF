@@ -41,8 +41,6 @@ abstract class ItemStackMixin implements ModNameHolder {
 
     @Override
     public void wmitaf$setModName(@Nullable String modName) {
-        if (wmitaf$modName == null) {
-            wmitaf$modName = modName;
-        }
+        wmitaf$modName = modName;
     }
 }
