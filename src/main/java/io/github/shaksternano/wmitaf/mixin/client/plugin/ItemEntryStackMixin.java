@@ -1,7 +1,6 @@
-package io.github.shaksternano.wmitaf.mixin.client;
+package io.github.shaksternano.wmitaf.mixin.client.plugin;
 
 import io.github.shaksternano.wmitaf.client.util.ModNameUtil;
-import me.shedaniel.rei.api.EntryStack;
 import me.shedaniel.rei.impl.AbstractEntryStack;
 import me.shedaniel.rei.impl.ItemEntryStack;
 import net.fabricmc.api.EnvType;
@@ -22,14 +21,8 @@ abstract class ItemEntryStackMixin extends AbstractEntryStack {
 
     // Sets the mod name in the REI tooltip to be the name of the mod that adds the first enchantment on an item if it's an enchanted book, or the name of the mod that adds the first effect on an item if it's a potion.
     @Redirect(method = "getTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/Identifier;getNamespace()Ljava/lang/String;"), require = 0)
-    private String reiModNameOverride(Identifier getId) {
-        if (getType() == EntryStack.Type.ITEM) {
-            Identifier identifier = ModNameUtil.getIdentifierFromStackData((ItemStack) getObject());
-            if (identifier != null) {
-                return identifier.getNamespace();
-            }
-        }
-
-        return Registry.ITEM.getId(getItem()).getNamespace();
+    private String reiModNameOverrideOld(Identifier getId) {
+        String modId = ModNameUtil.getActualModId((ItemStack) getObject());
+        return modId == null ? Registry.ITEM.getId(getItem()).getNamespace() : modId;
     }
 }

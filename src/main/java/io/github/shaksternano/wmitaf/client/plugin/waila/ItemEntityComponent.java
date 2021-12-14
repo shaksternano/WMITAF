@@ -12,7 +12,6 @@ import net.minecraft.text.Text;
 
 import java.util.List;
 
-@SuppressWarnings({"rawtypes", "unchecked"})
 @Environment(EnvType.CLIENT)
 public enum ItemEntityComponent implements IEntityComponentProvider {
 
@@ -24,11 +23,13 @@ public enum ItemEntityComponent implements IEntityComponentProvider {
     public void appendTail(List<Text> tooltip, IEntityAccessor accessor, IPluginConfig config) {
         if (config.get(WailaConstants.CONFIG_SHOW_MOD_NAME)) {
             Entity entity = accessor.getEntity();
+
             if (entity instanceof ItemEntity) {
                 ItemStack stack = ((ItemEntity) entity).getStack();
-                String modName = ModNameUtil.actualModName(stack);
+                String modName = ModNameUtil.getActualModName(stack);
+
                 if (modName != null) {
-                    ((ITaggableList) tooltip).setTag(WailaConstants.MOD_NAME_TAG, Text.of(String.format(Waila.CONFIG.get().getFormatting().getModName(), modName)));
+                    ModNameUtil.setWailaTooltip(tooltip, entity, modName, Waila.CONFIG.get().getFormatting().getModName(), true, ModNameUtil.modNameNeedsToBeChanged(stack));
                 }
             }
         }

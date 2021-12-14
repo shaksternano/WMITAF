@@ -12,7 +12,7 @@ group = project.maven_group
 
 repositories {
 	maven {
-		name = "BAI"
+		name = "Bad As Intended"
 		url = "https://maven.bai.lol"
 	}
 
