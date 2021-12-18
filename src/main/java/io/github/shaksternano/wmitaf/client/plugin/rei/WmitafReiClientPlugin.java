@@ -9,7 +9,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 @Environment(EnvType.CLIENT)
-public class WmitafReiClientPlugin implements REIClientPlugin {
+public final class WmitafReiClientPlugin implements REIClientPlugin {
 
     // Registers the REI plugins.
     @SuppressWarnings({"deprecation", "UnstableApiUsage"})

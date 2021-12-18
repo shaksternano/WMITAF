@@ -4,8 +4,8 @@
     "package": "io.github.shaksternano.wmitaf.mixin",
     "compatibilityLevel": "JAVA_17",
     "client": [
-        "client.plugin.EntityMixin",
-        "client.plugin.ItemStackMixin"
+        "client.EntityMixin",
+        "client.ItemStackMixin"
     ],
     "injectors": {
         "defaultRequire": 1

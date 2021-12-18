@@ -1,4 +1,4 @@
-package io.github.shaksternano.wmitaf.mixin.client.plugin;
+package io.github.shaksternano.wmitaf.mixin.client;
 
 import io.github.shaksternano.wmitaf.client.accessor.TextHolder;
 import net.fabricmc.api.EnvType;
