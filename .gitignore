@@ -23,6 +23,7 @@ classes/
 bin/
 .classpath
 .project
+.vscode
 
 # macOS
 
@@ -39,5 +40,4 @@ remappedSrc/
 output/
 libs/
 .metadata
-.vscode
 .settings

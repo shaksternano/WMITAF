@@ -17,6 +17,20 @@ import net.minecraftforge.common.ForgeHooks;
 public class WmitafReiClientPluginForge implements REIClientPlugin {
 
     /**
+     * Registers the REI plugins.
+     *
+     * @param registry The entry settings adapters registry
+     */
+    @SuppressWarnings({"deprecation", "UnstableApiUsage"})
+    @Override
+    public void registerEntrySettingsAdapters(EntrySettingsAdapterRegistry registry) {
+        registry.register(VanillaEntryTypes.ITEM, EntryStack.Settings.CONTAINING_NS, (entry, settings, value) -> {
+            String modId = getOrCacheModId(entry.getValue());
+            return modId == null ? value : (stack, namespace) -> modId;
+        });
+    }
+
+    /**
      * Gets the mod ID of an {@link ItemStack}. If the mod ID
      * is not cached, it will be cached in the ItemStack.
      *
@@ -36,19 +50,5 @@ public class WmitafReiClientPluginForge implements REIClientPlugin {
         }
 
         return modId;
-    }
-
-    /**
-     * Registers the REI plugins.
-     *
-     * @param registry The entry settings adapters registry
-     */
-    @SuppressWarnings({"deprecation", "UnstableApiUsage"})
-    @Override
-    public void registerEntrySettingsAdapters(EntrySettingsAdapterRegistry registry) {
-        registry.register(VanillaEntryTypes.ITEM, EntryStack.Settings.CONTAINING_NS, (entry, settings, value) -> {
-            String modId = getOrCacheModId(entry.getValue());
-            return modId == null ? value : (stack, namespace) -> modId;
-        });
     }
 }

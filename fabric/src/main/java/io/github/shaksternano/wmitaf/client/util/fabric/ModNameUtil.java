@@ -103,8 +103,8 @@ public class ModNameUtil {
     public static boolean modNameNeedsToBeChanged(ItemStack stack) {
         return
                 stack.isOf(Items.ENCHANTED_BOOK) ||
-                        hasStatusEffects(stack) ||
-                        hasId(stack.getItem(), PATCHOULI_BOOK_ID);
+                hasStatusEffects(stack) ||
+                hasId(stack.getItem(), PATCHOULI_BOOK_ID);
     }
 
     /**
