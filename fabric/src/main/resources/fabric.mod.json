@@ -1,0 +1,48 @@
+{
+    "schemaVersion": 1,
+    "id": "wmitaf",
+    "version": "${version}",
+    "name": "WMITAF",
+    "description": "What Mod Is This Actually From?\nAn addon for WTHIT and REI that shows the name of the mod that adds an enchantment in the tooltip of an enchanted book, or the mod that adds the status effect of a potion, instead of \"Minecraft\".",
+    "authors": [
+        "ShaksterNano"
+    ],
+    "contact": {
+        "homepage": "https://github.com/ShakterNano/WMITAF",
+        "sources": "https://github.com/ShakterNano/WMITAF",
+        "issues": "https://github.com/ShakterNano/WMITAF/issues"
+    },
+    "license": "MIT",
+    "icon": "assets/wmitaf/icon.png",
+    "environment": "client",
+    "entrypoints": {
+        "rei": [
+            "io.github.shaksternano.wmitaf.client.plugin.rei.fabric.WmitafReiClientPluginFabric"
+        ]
+    },
+    "mixins": [
+        "wmitaf-common.mixins.json",
+        "wmitaf-fabric.mixins.json"
+    ],
+    "custom": {
+        "waila:plugins": {
+            "id": "wmitaf:waila_plugin",
+            "initializer": "io.github.shaksternano.wmitaf.client.plugin.waila.fabric.WmitafWailaPluginFabric"
+        },
+        "notify_gradle_properties_url": "https://raw.githubusercontent.com/ShakterNano/WMITAF/1.18/gradle.properties",
+        "notify_gradle_properties_key": "mod_version"
+    },
+    "depends": {
+        "fabricloader": ">=0.11.0",
+        "minecraft": ">=1.18",
+        "java": ">=17"
+    },
+    "suggests": {
+        "wthit": ">=4.1.0",
+        "roughlyenoughitems": ">=7.0.352"
+    },
+    "breaks": {
+        "wthit": "<4.1.0",
+        "roughlyenoughitems": "<7.0.352"
+    }
+}

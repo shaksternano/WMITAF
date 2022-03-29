@@ -1,0 +1,30 @@
+modLoader = "javafml"
+loaderVersion = "[38,)"
+issueTrackerURL = "https://github.com/ShakterNano/WMITAF/issues"
+license = "MIT"
+
+[[mods]]
+modId = "wmitaf"
+version = "${version}"
+displayName = "WMITAF"
+displayURL = "https://github.com/ShakterNano/WMITAF"
+authors = "ShaksterNano"
+description = '''
+        What Mod Is This Actually From?
+        An addon for WTHIT and REI that shows the name of the mod that adds an enchantment in the tooltip of an enchanted book, or the mod that adds the status effect of a potion, instead of "Minecraft".
+    '''
+logoFile = "icon.png"
+
+[[dependencies.wmitaf]]
+modId = "forge"
+mandatory = true
+versionRange = "[38,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.wmitaf]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.18.0,)"
+ordering = "NONE"
+side = "BOTH"
