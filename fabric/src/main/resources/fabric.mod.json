@@ -20,7 +20,7 @@
             "com.llamalad7.mixinextras.MixinExtrasBootstrap::init"
         ],
         "rei": [
-            "io.github.shaksternano.wmitaf.client.plugin.rei.fabric.WmitafReiClientPluginFabric"
+            "io.github.shaksternano.wmitaf.client.plugin.rei.fabric.WmitafReiClientPluginImpl"
         ]
     },
     "mixins": [

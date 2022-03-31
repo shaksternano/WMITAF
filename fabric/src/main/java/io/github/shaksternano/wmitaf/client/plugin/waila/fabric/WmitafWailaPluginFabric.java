@@ -7,7 +7,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.network.OtherClientPlayerEntity;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.passive.PigEntity;
 
 @SuppressWarnings("unused")
 @Environment(EnvType.CLIENT)
