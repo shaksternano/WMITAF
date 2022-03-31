@@ -19,9 +19,6 @@ configurations {
 
 dependencies {
     modImplementation("net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}")
-    modApi("net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}")
-    // Remove the next line if you don't want to depend on the API
-    modApi("dev.architectury:architectury-fabric:${rootProject.architectury_api_version}")
 
     common(project(path: ":common", configuration: "namedElements")) {
         transitive = false
@@ -30,10 +27,19 @@ dependencies {
         transitive = false
     }
 
+    implementation(include("com.github.LlamaLad7:MixinExtras:${rootProject.mixin_extras_version}"))
+    annotationProcessor("com.github.LlamaLad7:MixinExtras:${rootProject.mixin_extras_version}")
+
     modApi("me.shedaniel:RoughlyEnoughItems-fabric:${rootProject.rei_version}")
 
     modCompileOnly("mcp.mobius.waila:wthit-api:fabric-${rootProject.wthit_version}")
+
+    modCompileOnly("mcjty.theoneprobe:theoneprobe-fabric:1.18-${rootProject.the_one_probe_fabric_version}")
+
     modRuntimeOnly("mcp.mobius.waila:wthit:fabric-${rootProject.wthit_version}")
+
+    // modRuntimeOnly("mcjty.theoneprobe:theoneprobe-fabric:1.18-${rootProject.the_one_probe_fabric_version}")
+    // modRuntimeOnly("curse.maven:top-plus-595092:${rootProject.the_one_probe_plus_fabric_id}")
 
     modRuntimeOnly("com.terraformersmc:modmenu:${rootProject.modmenu_version}")
 

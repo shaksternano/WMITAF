@@ -11,6 +11,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeHooks;
 
+import java.util.Optional;
+
 @SuppressWarnings("unused")
 @OnlyIn(Dist.CLIENT)
 @REIPlugin
@@ -40,15 +42,8 @@ public class WmitafReiClientPluginForge implements REIClientPlugin {
     @SuppressWarnings("ConstantConditions")
     private static String getOrCacheModId(ItemStack stack) {
         ModNameHolder modNameHolder = (ModNameHolder) (Object) stack;
-        String modId;
-
-        if (modNameHolder.wmitaf$getModId().isPresent()) {
-            modId = modNameHolder.wmitaf$getModId().orElseThrow();
-        } else {
-            modId = ForgeHooks.getDefaultCreatorModId(stack);
-            modNameHolder.wmitaf$setModId(modId);
-        }
-
-        return modId;
+        Optional<String> modIdOptional = modNameHolder.wmitaf$getModId();
+        modIdOptional.ifPresent(modNameHolder::wmitaf$setModId);
+        return modIdOptional.orElse(ForgeHooks.getDefaultCreatorModId(stack));
     }
 }

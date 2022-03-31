@@ -20,6 +20,7 @@ import net.minecraft.potion.PotionUtil;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Iterator;
 import java.util.List;
@@ -103,8 +104,8 @@ public class ModNameUtil {
     public static boolean modNameNeedsToBeChanged(ItemStack stack) {
         return
                 stack.isOf(Items.ENCHANTED_BOOK) ||
-                hasStatusEffects(stack) ||
-                hasId(stack.getItem(), PATCHOULI_BOOK_ID);
+                        hasStatusEffects(stack) ||
+                        hasId(stack.getItem(), PATCHOULI_BOOK_ID);
     }
 
     /**
@@ -137,7 +138,7 @@ public class ModNameUtil {
     private static Optional<String> getModNameFromId(String namespace) {
         return FabricLoader.getInstance().getModContainer(namespace)
                 .map(container -> container.getMetadata().getName())
-                .or(() -> Optional.of(namespace));
+                .or(() -> Optional.of(StringUtils.capitalize(namespace)));
     }
 
     /**

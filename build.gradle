@@ -36,6 +36,20 @@ allprojects {
 
     repositories {
         maven {
+            name = "JitPack"
+            url = "https://jitpack.io"
+        }
+
+        maven {
+            name = "Curse Maven"
+            url = "https://cursemaven.com"
+
+            content {
+                includeGroup "curse.maven"
+            }
+        }
+
+        maven {
             name = "Bad As Intended"
             url = "https://maven.bai.lol"
         }
@@ -46,12 +60,8 @@ allprojects {
         }
 
         maven {
-            name = "Curse Maven"
-            url = "https://cursemaven.com"
-
-            content {
-                includeGroup "curse.maven"
-            }
+            name = "Wisp Forest"
+            url = "https://maven.wispforest.io"
         }
     }
 

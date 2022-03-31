@@ -3,7 +3,7 @@
     "id": "wmitaf",
     "version": "${version}",
     "name": "WMITAF",
-    "description": "What Mod Is This Actually From?\nAn addon for WTHIT and REI that shows the name of the mod that adds an enchantment in the tooltip of an enchanted book, or the mod that adds the status effect of a potion, instead of \"Minecraft\".",
+    "description": "What Mod Is This Actually From?\nAn addon for WTHIT, The One Probe, and REI that shows the name of the mod that adds an enchantment in the tooltip of an enchanted book, or the mod that adds the status effect of a potion, instead of \"Minecraft\".",
     "authors": [
         "ShaksterNano"
     ],
@@ -16,6 +16,9 @@
     "icon": "assets/wmitaf/icon.png",
     "environment": "client",
     "entrypoints": {
+        "preLaunch": [
+            "com.llamalad7.mixinextras.MixinExtrasBootstrap::init"
+        ],
         "rei": [
             "io.github.shaksternano.wmitaf.client.plugin.rei.fabric.WmitafReiClientPluginFabric"
         ]
