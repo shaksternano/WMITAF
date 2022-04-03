@@ -61,7 +61,7 @@ public class ModNameUtil {
         if (modName.get() == null) {
             if (modNameNeedsToBeChanged(stack)) {
                 Optional<String> modIdOptional = getActualModId(stack);
-                modIdOptional.ifPresent(modId -> modName.set(getModNameFromId(modId).orElse(null)));
+                modIdOptional.ifPresent(modId -> modName.set(getModNameFromId(modId).orElse(StringUtils.capitalize(modId))));
                 modNameHolder.wmitaf$setModName(modName.get());
             }
         }
@@ -135,10 +135,9 @@ public class ModNameUtil {
      * @param namespace The mod's ID.
      * @return An {@link Optional} that describes the name of the mod.
      */
-    private static Optional<String> getModNameFromId(String namespace) {
+    public static Optional<String> getModNameFromId(String namespace) {
         return FabricLoader.getInstance().getModContainer(namespace)
-                .map(container -> container.getMetadata().getName())
-                .or(() -> Optional.of(StringUtils.capitalize(namespace)));
+                .map(container -> container.getMetadata().getName());
     }
 
     /**
@@ -149,14 +148,16 @@ public class ModNameUtil {
      */
     private static Optional<Identifier> getFirstEnchantmentId(ItemStack stack) {
         Set<Enchantment> enchantments = EnchantmentHelper.get(stack).keySet();
-        Iterator<Enchantment> enchantmentsIterator = enchantments.iterator();
 
-        if (enchantmentsIterator.hasNext()) {
-            Enchantment enchantment = enchantmentsIterator.next();
-            return Optional.ofNullable(EnchantmentHelper.getEnchantmentId(enchantment));
-        } else {
-            return Optional.empty();
+        for (Enchantment enchantment : enchantments) {
+            Identifier enchantmentId = EnchantmentHelper.getEnchantmentId(enchantment);
+
+            if (enchantmentId != null) {
+                return Optional.of(enchantmentId);
+            }
         }
+
+        return Optional.empty();
     }
 
     /**
@@ -167,10 +168,9 @@ public class ModNameUtil {
      */
     private static Optional<Identifier> getFirstEffectId(ItemStack stack) {
         List<StatusEffectInstance> effectInstances = PotionUtil.getPotionEffects(stack);
-        Iterator<StatusEffectInstance> effectInstancesIterator = effectInstances.iterator();
 
-        if (effectInstancesIterator.hasNext()) {
-            StatusEffect effect = effectInstancesIterator.next().getEffectType();
+        for (StatusEffectInstance effectInstance : effectInstances) {
+            StatusEffect effect = effectInstance.getEffectType();
             Identifier effectId = Registry.STATUS_EFFECT.getId(effect);
 
             if (effectId != null) {

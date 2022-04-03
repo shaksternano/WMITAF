@@ -16,16 +16,15 @@
     "icon": "assets/wmitaf/icon.png",
     "environment": "client",
     "entrypoints": {
-        "preLaunch": [
-            "com.llamalad7.mixinextras.MixinExtrasBootstrap::init"
+        "client": [
+            "io.github.shaksternano.wmitaf.client.fabric.WmitafFabricClient"
         ],
         "rei": [
             "io.github.shaksternano.wmitaf.client.plugin.rei.fabric.WmitafReiClientPluginImpl"
         ]
     },
     "mixins": [
-        "wmitaf-common.mixins.json",
-        "wmitaf-fabric.mixins.json"
+        "wmitaf-common.mixins.json"
     ],
     "custom": {
         "waila:plugins": {

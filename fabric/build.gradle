@@ -27,19 +27,22 @@ dependencies {
         transitive = false
     }
 
-    implementation(include("com.github.LlamaLad7:MixinExtras:${rootProject.mixin_extras_version}"))
-    annotationProcessor("com.github.LlamaLad7:MixinExtras:${rootProject.mixin_extras_version}")
-
     modApi("me.shedaniel:RoughlyEnoughItems-fabric:${rootProject.rei_version}")
 
     modCompileOnly("mcp.mobius.waila:wthit-api:fabric-${rootProject.wthit_version}")
 
     modCompileOnly("mcjty.theoneprobe:theoneprobe-fabric:1.18-${rootProject.the_one_probe_fabric_version}")
+    modCompileOnly("com.github.ShakterNano:TOP-Plus:master-SNAPSHOT") {
+        transitive = false
+    }
 
     // modRuntimeOnly("mcp.mobius.waila:wthit:fabric-${rootProject.wthit_version}")
 
     modRuntimeOnly("mcjty.theoneprobe:theoneprobe-fabric:1.18-${rootProject.the_one_probe_fabric_version}")
-    modRuntimeOnly("curse.maven:top-plus-595092:${rootProject.the_one_probe_plus_fabric_id}")
+    // modRuntimeOnly("curse.maven:top-plus-595092:${rootProject.the_one_probe_plus_fabric_id}")
+    modRuntimeOnly("com.github.ShakterNano:TOP-Plus:master-SNAPSHOT") {
+        transitive = false
+    }
 
     modRuntimeOnly("com.terraformersmc:modmenu:${rootProject.modmenu_version}")
 
