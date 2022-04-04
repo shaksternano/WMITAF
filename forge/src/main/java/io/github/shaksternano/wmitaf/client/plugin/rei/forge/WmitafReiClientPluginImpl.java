@@ -40,10 +40,6 @@ public class WmitafReiClientPluginImpl implements REIClientPlugin {
         Optional<String> modIdOptional = modNameHolder.wmitaf$getModId();
         modIdOptional.ifPresent(modNameHolder::wmitaf$setModId);
 
-        if (modIdOptional.isPresent()) {
-            return modIdOptional;
-        } else {
-            return Optional.ofNullable(ForgeHooks.getDefaultCreatorModId(stack));
-        }
+        return modIdOptional.isPresent() ? modIdOptional : Optional.ofNullable(ForgeHooks.getDefaultCreatorModId(stack));
     }
 }
