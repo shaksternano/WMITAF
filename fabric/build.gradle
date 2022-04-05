@@ -46,7 +46,7 @@ dependencies {
 
     modRuntimeOnly("com.terraformersmc:modmenu:${rootProject.modmenu_version}")
 
-    modRuntimeOnly("com.github.ShakterNano:Imperishable-Items-Fabric:mc${rootProject.minecraft_version}-${rootProject.imperishable_items_fabric_version}")
+    // modRuntimeOnly("com.github.ShaksterNano:Imperishable-Items-Fabric:mc${rootProject.minecraft_version}-${rootProject.imperishable_items_fabric_version}")
 }
 
 processResources {
