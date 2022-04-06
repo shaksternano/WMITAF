@@ -9,8 +9,6 @@ architectury {
 }
 
 subprojects {
-    apply plugin: "java"
-    apply plugin: "maven-publish"
     apply plugin: "dev.architectury.loom"
     apply plugin: "io.github.juuxel.loom-quiltflower"
 
@@ -31,14 +29,6 @@ subprojects {
 
     java {
         withSourcesJar()
-    }
-
-    publishing {
-        publications {
-            maven(MavenPublication) {
-                from components.java
-            }
-        }
     }
 }
 

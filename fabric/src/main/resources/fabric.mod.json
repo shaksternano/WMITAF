@@ -8,9 +8,9 @@
         "ShaksterNano"
     ],
     "contact": {
-        "homepage": "https://github.com/ShakterNano/WMITAF",
-        "sources": "https://github.com/ShakterNano/WMITAF",
-        "issues": "https://github.com/ShakterNano/WMITAF/issues"
+        "homepage": "https://github.com/ShaksterNano/WMITAF",
+        "sources": "https://github.com/ShaksterNano/WMITAF",
+        "issues": "https://github.com/ShaksterNano/WMITAF/issues"
     },
     "license": "MIT",
     "icon": "assets/wmitaf/icon.png",
@@ -31,7 +31,7 @@
             "id": "wmitaf:waila_plugin",
             "initializer": "io.github.shaksternano.wmitaf.client.plugin.waila.fabric.WmitafWailaPluginFabric"
         },
-        "notify_gradle_properties_url": "https://raw.githubusercontent.com/ShakterNano/WMITAF/1.18/gradle.properties",
+        "notify_gradle_properties_url": "https://raw.githubusercontent.com/ShaksterNano/WMITAF/1.18/gradle.properties",
         "notify_gradle_properties_key": "mod_version"
     },
     "depends": {
