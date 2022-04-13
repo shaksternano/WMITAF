@@ -15,7 +15,6 @@ import java.util.Optional;
  * For caching a {@link Text} name and a {@link Text} mod name related to an entity.
  */
 @SuppressWarnings("unused")
-@Environment(EnvType.CLIENT)
 @Mixin(Entity.class)
 abstract class EntityMixin implements TextHolder {
 

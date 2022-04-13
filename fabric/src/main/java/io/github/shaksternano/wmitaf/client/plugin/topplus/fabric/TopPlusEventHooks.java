@@ -43,6 +43,6 @@ public class TopPlusEventHooks {
                                 StringUtils.capitalize(itemModId)
                         )
                 )
-        ).formatted(Formatting.BLUE).formatted(Formatting.ITALIC);
+        ).formatted(Formatting.BLUE, Formatting.ITALIC);
     }
 }

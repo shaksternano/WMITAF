@@ -32,6 +32,7 @@ dependencies {
     modCompileOnly("mcp.mobius.waila:wthit-api:fabric-${rootProject.wthit_version}")
 
     modCompileOnly("mcjty.theoneprobe:theoneprobe-fabric:1.18-${rootProject.the_one_probe_fabric_version}")
+    // modCompileOnly("curse.maven:top-plus-595092:${rootProject.the_one_probe_plus_fabric_id}")
     modCompileOnly("com.github.ShaksterNano:TOP-Plus:master-SNAPSHOT") {
         transitive = false
     }

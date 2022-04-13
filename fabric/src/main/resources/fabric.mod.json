@@ -41,7 +41,8 @@
     },
     "suggests": {
         "wthit": ">=4.1.0",
-        "roughlyenoughitems": ">=7.0.352"
+        "roughlyenoughitems": ">=7.0.352",
+        "top_plus": "*"
     },
     "breaks": {
         "wthit": "<4.1.0",

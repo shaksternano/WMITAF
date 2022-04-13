@@ -14,7 +14,6 @@ import java.util.Optional;
  * For caching a Mod ID and Mod name related to an entity.
  */
 @SuppressWarnings("unused")
-@Environment(EnvType.CLIENT)
 @Mixin(ItemStack.class)
 abstract class ItemStackMixin implements ModNameHolder {
 
