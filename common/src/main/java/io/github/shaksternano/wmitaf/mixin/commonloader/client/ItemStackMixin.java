@@ -1,8 +1,6 @@
 package io.github.shaksternano.wmitaf.mixin.commonloader.client;
 
 import io.github.shaksternano.wmitaf.client.accessor.ModNameHolder;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;

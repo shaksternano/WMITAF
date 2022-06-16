@@ -25,7 +25,6 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicReference;
 
 @Environment(EnvType.CLIENT)
 public class ModNameUtil {
@@ -55,17 +54,23 @@ public class ModNameUtil {
     @SuppressWarnings("ConstantConditions")
     public static Optional<String> getActualModName(ItemStack stack) {
         ModNameHolder modNameHolder = (ModNameHolder) (Object) stack;
-        AtomicReference<String> modName = new AtomicReference<>(modNameHolder.wmitaf$getModName().orElse(null));
+        String modName = modNameHolder.wmitaf$getModName().orElse(null);
 
-        if (modName.get() == null) {
+        if (modName == null) {
             if (modNameNeedsToBeChanged(stack)) {
                 Optional<String> modIdOptional = getActualModId(stack);
-                modIdOptional.ifPresent(modId -> modName.set(getModNameFromId(modId).orElse(StringUtils.capitalize(modId))));
-                modNameHolder.wmitaf$setModName(modName.get());
+                if (modIdOptional.isPresent()) {
+                    String modId = modIdOptional.orElseThrow();
+                    modName = getModNameFromId(modId).orElse(StringUtils.capitalize(modId));
+                }
+
+                if (modName != null) {
+                    modNameHolder.wmitaf$setModName(modName);
+                }
             }
         }
 
-        return Optional.ofNullable(modName.get());
+        return Optional.ofNullable(modName);
     }
 
     /**
@@ -80,18 +85,20 @@ public class ModNameUtil {
     @SuppressWarnings("ConstantConditions")
     public static Optional<String> getActualModId(ItemStack stack) {
         ModNameHolder modNameHolder = (ModNameHolder) (Object) stack;
-        AtomicReference<String> modId = new AtomicReference<>(modNameHolder.wmitaf$getModId().orElse(null));
+        String modId = modNameHolder.wmitaf$getModId().orElse(null);
 
-        if (modId.get() == null) {
+        if (modId == null) {
             if (modNameNeedsToBeChanged(stack)) {
-                getIdentifierFromStackData(stack).ifPresent(identifier -> {
-                    modId.set(identifier.getNamespace());
-                    modNameHolder.wmitaf$setModId(modId.get());
-                });
+                Optional<Identifier> identifierOptional = getIdentifierFromStackData(stack);
+                modId = identifierOptional.map(Identifier::getNamespace).orElse(null);
+
+                if (modId != null) {
+                    modNameHolder.wmitaf$setModId(modId);
+                }
             }
         }
 
-        return Optional.ofNullable(modId.get());
+        return Optional.ofNullable(modId);
     }
 
     /**

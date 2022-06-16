@@ -3,7 +3,7 @@
     "id": "wmitaf",
     "version": "${version}",
     "name": "WMITAF",
-    "description": "What Mod Is This Actually From?\nAn addon for WTHIT, The One Probe, and REI that shows the name of the mod that adds an enchantment in the tooltip of an enchanted book, or the mod that adds the status effect of a potion, instead of \"Minecraft\".",
+    "description": "What Mod Is This Actually From?\nAn addon for WTHIT, The One Probe Plus, and REI that shows the name of the mod that adds an enchantment in the tooltip of an enchanted book, or the mod that adds the status effect of a potion, instead of \"Minecraft\".",
     "authors": [
         "ShaksterNano"
     ],
@@ -42,10 +42,11 @@
     "suggests": {
         "wthit": ">=4.1.0",
         "roughlyenoughitems": ">=7.0.352",
-        "top_plus": "*"
+        "top_plus": ">=1.1.0"
     },
     "breaks": {
         "wthit": "<4.1.0",
-        "roughlyenoughitems": "<7.0.352"
+        "roughlyenoughitems": "<7.0.352",
+        "top_plus": "<1.1.0"
     }
 }

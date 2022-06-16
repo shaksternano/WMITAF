@@ -1,8 +1,6 @@
 package io.github.shaksternano.wmitaf.mixin.commonloader.client;
 
 import io.github.shaksternano.wmitaf.client.accessor.TextHolder;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.entity.Entity;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.Nullable;
