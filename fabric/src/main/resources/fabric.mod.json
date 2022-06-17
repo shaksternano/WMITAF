@@ -36,17 +36,17 @@
     },
     "depends": {
         "fabricloader": ">=0.11.0",
-        "minecraft": ">=1.18",
+        "minecraft": ">=1.19",
         "java": ">=17"
     },
     "suggests": {
-        "wthit": ">=4.1.0",
-        "roughlyenoughitems": ">=7.0.352",
+        "wthit": ">=5.1.0",
+        "roughlyenoughitems": ">=9.0.472",
         "top_plus": ">=1.1.0"
     },
     "breaks": {
-        "wthit": "<4.1.0",
-        "roughlyenoughitems": "<7.0.352",
+        "wthit": "<5.1.0",
+        "roughlyenoughitems": "<9.0.472",
         "top_plus": "<1.1.0"
     }
 }

@@ -18,20 +18,20 @@ logoFile = "icon.png"
 [[dependencies.wmitaf]]
 modId = "forge"
 mandatory = true
-versionRange = "[38,)"
+versionRange = "[41,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.wmitaf]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.18.0,)"
+versionRange = "[1.19,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.wmitaf]]
 modId = "roughlyenoughitems"
 mandatory = true
-versionRange = "[7.0.352,)"
+versionRange = "[9.0.472,)"
 ordering = "NONE"
 side = "BOTH"
