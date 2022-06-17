@@ -8,7 +8,6 @@ import me.shedaniel.rei.forge.REIPlugin;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeHooks;
 
 import java.util.Optional;
 
@@ -39,7 +38,6 @@ public class WmitafReiClientPluginImpl implements REIClientPlugin {
         ModNameHolder modNameHolder = (ModNameHolder) (Object) stack;
         Optional<String> modIdOptional = modNameHolder.wmitaf$getModId();
         modIdOptional.ifPresent(modNameHolder::wmitaf$setModId);
-
-        return modIdOptional.isPresent() ? modIdOptional : Optional.ofNullable(ForgeHooks.getDefaultCreatorModId(stack));
+        return modIdOptional.isPresent() ? modIdOptional : Optional.ofNullable(stack.getItem().getCreatorModId(stack));
     }
 }

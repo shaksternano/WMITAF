@@ -6,7 +6,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.registry.Registry;
@@ -37,12 +36,15 @@ public class TopPlusEventHooks {
     private static Text setActualModName(ItemStack stack, TooltipContext context, List<Text> lines) {
         String itemModId = Registry.ITEM.getId(stack.getItem()).getNamespace();
 
-        return new LiteralText(
+        return Text.literal(
                 ModNameUtil.getActualModName(stack).orElse(
                         ModNameUtil.getModNameFromId(itemModId).orElse(
                                 StringUtils.capitalize(itemModId)
                         )
                 )
-        ).formatted(Formatting.BLUE, Formatting.ITALIC);
+        ).formatted(
+                Formatting.BLUE,
+                Formatting.ITALIC
+        );
     }
 }

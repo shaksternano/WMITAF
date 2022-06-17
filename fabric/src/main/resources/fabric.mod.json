@@ -19,7 +19,7 @@
         "client": [
             "io.github.shaksternano.wmitaf.client.fabric.WmitafFabricClient"
         ],
-        "rei": [
+        "rei_client": [
             "io.github.shaksternano.wmitaf.client.plugin.rei.fabric.WmitafReiClientPluginImpl"
         ]
     },

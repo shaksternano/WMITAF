@@ -39,9 +39,7 @@ dependencies {
 
     modRuntimeOnly("com.terraformersmc:modmenu:${rootProject.modmenu_version}")
 
-    modRuntimeOnly("com.github.ShaksterNano:Imperishable-Items-Fabric:1.18-SNAPSHOT") {
-        transitive = false
-    }
+    modRuntimeOnly("curse.maven:fabric-enchantments-498465:${rootProject.fabric_enchantments_version}")
 }
 
 processResources {

@@ -34,11 +34,6 @@ dependencies {
     }
 
     modApi("me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}")
-
-    modRuntimeOnly("curse.maven:jade-324717:${rootProject.jade_forge_id}")
-
-    modRuntimeOnly("curse.maven:wonderful-enchantments-417439:${rootProject.wonderful_enchantments_forge_id}")
-    modRuntimeOnly("curse.maven:majrusz-library-437409:${rootProject.majrusz_library_forge_id}")
 }
 
 processResources {
