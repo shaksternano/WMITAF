@@ -1,5 +1,6 @@
 plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
+    id "me.shedaniel.unified-publishing"
 }
 
 archivesBaseName = "${rootProject.archives_base_name}-fabric-mc${rootProject.minecraft_version}"
@@ -88,5 +89,49 @@ publishing {
     // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
     repositories {
         // Add repositories to publish to here.
+    }
+}
+
+unifiedPublishing {
+    project {
+        displayName = "WMITAF Fabric $project.version for Minecraft $rootProject.supported_minecraft_versions"
+        changelog = "- Updated to 1.19"
+        releaseType = "release"
+        gameVersions = ["1.19"]
+        gameLoaders = ["fabric"]
+
+        mainPublication remapJar
+
+        relations {
+            optional {
+                curseforge = "roughly-enough-items"
+                modrinth = "roughly-enough-items"
+            }
+
+            optional {
+                curseforge = "wthit"
+                modrinth = "wthit"
+            }
+
+            optional {
+                curseforge = "top-plus"
+            }
+        }
+
+        if (project.hasProperty("CURSEFORGE_TOKEN") || System.getenv("CURSEFORGE_TOKEN") != null) {
+            curseforge {
+                token = project.hasProperty("CURSEFORGE_TOKEN") ? project.property("CURSEFORGE_TOKEN") : System.getenv("CURSEFORGE_TOKEN")
+                id = rootProject.curseforge_project_id
+                gameVersions.addAll("Java 17")
+            }
+        }
+
+        if (project.hasProperty("MODRINTH_TOKEN") || System.getenv("MODRINTH_TOKEN") != null) {
+            modrinth {
+                token = project.hasProperty("MODRINTH_TOKEN") ? project.property("MODRINTH_TOKEN") : System.getenv("MODRINTH_TOKEN")
+                id = rootProject.modrinth_project_id
+                version = "mc$rootProject.minecraft_version-$project.version-fabric"
+            }
+        }
     }
 }
