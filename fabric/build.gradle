@@ -95,7 +95,7 @@ publishing {
 unifiedPublishing {
     project {
         displayName = "WMITAF Fabric $project.version for Minecraft $rootProject.supported_minecraft_versions"
-        changelog = "- Updated to 1.19"
+        changelog = "- Updated to Minecraft 1.19."
         releaseType = "release"
         gameVersions = ["1.19"]
         gameLoaders = ["fabric"]
