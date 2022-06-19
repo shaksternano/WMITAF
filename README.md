@@ -1,4 +1,4 @@
-# What Mod Is This Enchantment From?
+# What Mod Is This Actually From?
 
 A client-side addon for the Fabric mods [WTHIT](https://github.com/badasintended/wthit "What The Hell Is That?") and [TOP Plus](https://github.com/Alpha-s-Stuff/TOP-Plus "TOP Plus") and the Forge/Fabric mod [REI](https://github.com/shedaniel/RoughlyEnoughItems "Roughly Enough Items") that shows the name of the mod that adds an enchantment in the tooltip of an enchanted book, or the mod that adds the status effect of a potion, instead of "Minecraft".
 
