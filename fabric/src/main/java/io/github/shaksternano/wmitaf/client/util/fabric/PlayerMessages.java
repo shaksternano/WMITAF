@@ -1,18 +1,14 @@
-package io.github.shaksternano.wmitaf.client.plugin.waila.fabric;
+package io.github.shaksternano.wmitaf.client.util.fabric;
 
 import com.google.common.collect.ImmutableMap;
-import io.github.shaksternano.wmitaf.client.util.fabric.ModNameUtil;
-import mcp.mobius.waila.api.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.entity.Entity;
 
 import java.util.Map;
+import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
-public enum OtherClientPlayerEntityComponent implements IEntityComponentProvider {
-
-    INSTANCE;
+public class PlayerMessages {
 
     /**
      * Player messages.
@@ -20,21 +16,13 @@ public enum OtherClientPlayerEntityComponent implements IEntityComponentProvider
     private static final Map<String, String> PLAYER_MESSAGES = createPlayerMessagesMap();
 
     /**
-     * Give some players a custom Waila mod name.
+     * Gets the message for a player.
      *
-     * @param tooltip  The tooltip to modify.
-     * @param accessor The accessor for the entity.
-     * @param config   The current plugin configuration.
+     * @param uuid The player's UUID.
+     * @return The message for a player.
      */
-    @Override
-    public void appendTail(ITooltip tooltip, IEntityAccessor accessor, IPluginConfig config) {
-        if (config.getBoolean(WailaConstants.CONFIG_SHOW_MOD_NAME)) {
-            Entity entity = accessor.getEntity();
-            String message = PLAYER_MESSAGES.get(entity.getUuidAsString());
-            if (message != null) {
-                ModNameUtil.setWailaTooltip(tooltip, entity, message, true);
-            }
-        }
+    public static Optional<String> getMessage(String uuid) {
+        return Optional.ofNullable(PLAYER_MESSAGES.get(uuid));
     }
 
     /**
@@ -49,6 +37,7 @@ public enum OtherClientPlayerEntityComponent implements IEntityComponentProvider
                 "65972a6e-02b9-4701-96a7-0f76c08c2e5d", // ShaksterNano
                 "64e44de7-a634-4dff-86a5-0e607c7f1f19", // DeMagnumKong
                 "eea7537e-0219-46b4-90e1-fcaaa1221fe0", // AtVeroAeneas
+                "a0d4d6e5-a9f6-4e51-8005-30ff2ec88833", // Shepherd722
                 "391cd817-d95b-4fa0-b044-513641feec3a", // Cosmo_1709
                 "9ecbd174-f1db-4c81-ab1f-05f49d3b9e76", // Multiverse__
                 "4ccc4e71-9259-44b5-9641-1941ad0bf37b" // I5haq2003

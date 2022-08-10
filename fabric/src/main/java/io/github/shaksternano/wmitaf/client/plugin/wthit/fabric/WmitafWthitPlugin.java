@@ -1,4 +1,4 @@
-package io.github.shaksternano.wmitaf.client.plugin.waila.fabric;
+package io.github.shaksternano.wmitaf.client.plugin.wthit.fabric;
 
 import mcp.mobius.waila.api.IRegistrar;
 import mcp.mobius.waila.api.IWailaPlugin;
@@ -10,7 +10,7 @@ import net.minecraft.entity.ItemEntity;
 
 @SuppressWarnings("unused")
 @Environment(EnvType.CLIENT)
-public class WmitafWailaPluginFabric implements IWailaPlugin {
+public class WmitafWthitPlugin implements IWailaPlugin {
 
     /**
      * Registers the Waila plugins.
@@ -19,8 +19,8 @@ public class WmitafWailaPluginFabric implements IWailaPlugin {
      */
     @Override
     public void register(IRegistrar registrar) {
-        registrar.addEventListener(ItemStackEventListener.INSTANCE, 1500);
-        registrar.addComponent(ItemEntityComponent.INSTANCE, TooltipPosition.TAIL, ItemEntity.class, 1500);
-        registrar.addComponent(OtherClientPlayerEntityComponent.INSTANCE, TooltipPosition.TAIL, OtherClientPlayerEntity.class, 1500);
+        registrar.addEventListener(WthitItemModNameProvider.INSTANCE, 1500);
+        registrar.addComponent(WthitItemModNameProvider.INSTANCE, TooltipPosition.TAIL, ItemEntity.class, 1500);
+        registrar.addComponent(WthitPlayerModNameProvider.INSTANCE, TooltipPosition.TAIL, OtherClientPlayerEntity.class, 1500);
     }
 }

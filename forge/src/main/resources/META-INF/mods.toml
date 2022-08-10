@@ -4,34 +4,34 @@ issueTrackerURL = "https://github.com/ShaksterNano/WMITAF/issues"
 license = "MIT"
 
 [[mods]]
-modId = "wmitaf"
-version = "${version}"
-displayName = "WMITAF"
-displayURL = "https://github.com/ShaksterNano/WMITAF"
-authors = "ShaksterNano"
-description = '''
-            What Mod Is This Actually From?
-            An addon for REI that shows the name of the mod that adds an enchantment in the tooltip of an enchanted book, or the mod that adds the status effect of a potion, instead of "Minecraft".
-        '''
-logoFile = "icon.png"
+    modId = "wmitaf"
+    version = "${version}"
+    displayName = "WMITAF"
+    displayURL = "https://github.com/ShaksterNano/WMITAF"
+    authors = "ShaksterNano"
+    description = '''
+                What Mod Is This Actually From?
+                An addon for REI that shows the name of the mod that adds an enchantment in the tooltip of an enchanted book, or the mod that adds the status effect of a potion, instead of "Minecraft".
+            '''
+    logoFile = "icon.png"
 
 [[dependencies.wmitaf]]
-modId = "forge"
-mandatory = true
-versionRange = "[41,)"
-ordering = "NONE"
-side = "BOTH"
+    modId = "forge"
+    mandatory = true
+    versionRange = "[41,)"
+    ordering = "NONE"
+    side = "BOTH"
 
 [[dependencies.wmitaf]]
-modId = "minecraft"
-mandatory = true
-versionRange = "[1.19,)"
-ordering = "NONE"
-side = "BOTH"
+    modId = "minecraft"
+    mandatory = true
+    versionRange = "[1.19,)"
+    ordering = "NONE"
+    side = "BOTH"
 
 [[dependencies.wmitaf]]
-modId = "roughlyenoughitems"
-mandatory = true
-versionRange = "[9.0.472,)"
-ordering = "NONE"
-side = "BOTH"
+    modId = "roughlyenoughitems"
+    mandatory = true
+    versionRange = "[9.0.472,)"
+    ordering = "NONE"
+    side = "BOTH"

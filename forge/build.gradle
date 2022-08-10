@@ -5,12 +5,6 @@ plugins {
 
 archivesBaseName = "${rootProject.archives_base_name}-forge-mc${rootProject.minecraft_version}"
 
-loom {
-    forge {
-        mixinConfig "wmitaf-common.mixins.json"
-    }
-}
-
 architectury {
     platformSetupLoomIde()
     forge()
@@ -34,7 +28,10 @@ dependencies {
         transitive = false
     }
 
-    modApi("me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}")
+    modCompileOnly("me.shedaniel:RoughlyEnoughItems-api-forge:${rootProject.rei_version}")
+    modCompileOnly("me.shedaniel:RoughlyEnoughItems-default-plugin-forge:${rootProject.rei_version}")
+
+    modRuntimeOnly("me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}")
 }
 
 processResources {
