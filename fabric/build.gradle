@@ -28,21 +28,23 @@ dependencies {
         transitive = false
     }
 
-    modApi("me.shedaniel:RoughlyEnoughItems-fabric:${rootProject.rei_version}")
-
+    modCompileOnly("me.shedaniel:RoughlyEnoughItems-fabric:${rootProject.rei_version}")
+    modCompileOnlyApi("mezz.jei:jei-${rootProject.minecraft_version}-common-api:${rootProject.jei_version}")
+    modCompileOnlyApi("mezz.jei:jei-${rootProject.minecraft_version}-fabric-api:${rootProject.jei_version}")
     modCompileOnly("mcp.mobius.waila:wthit-api:fabric-${rootProject.wthit_version}")
-    modCompileOnly("curse.maven:top-plus-595092:${rootProject.the_one_probe_plus_fabric_id}")
+    modCompileOnly("curse.maven:top-plus-595092:${rootProject.top_plus_fabric_id}")
+    modCompileOnly("curse.maven:jade-324717:${rootProject.jade_fabric_id}")
 
-    modRuntimeOnly("mcp.mobius.waila:wthit:fabric-${rootProject.wthit_version}")
-
+    modRuntimeOnly("me.shedaniel:RoughlyEnoughItems-fabric:${rootProject.rei_version}")
+    // modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-fabric:${rootProject.jei_version}")
+    // modRuntimeOnly("mcp.mobius.waila:wthit:fabric-${rootProject.wthit_version}")
     // modRuntimeOnly("mcjty.theoneprobe:theoneprobe-fabric:1.18-${rootProject.the_one_probe_fabric_version}")
-    // modRuntimeOnly("curse.maven:top-plus-595092:${rootProject.the_one_probe_plus_fabric_id}")
+    // modRuntimeOnly("curse.maven:top-plus-595092:${rootProject.top_plus_fabric_id}")
+    modRuntimeOnly("curse.maven:jade-324717:${rootProject.jade_fabric_id}")
 
     modRuntimeOnly("com.terraformersmc:modmenu:${rootProject.modmenu_version}")
-
-    modRuntimeOnly("com.github.ShaksterNano:Imperishable-Items-Fabric:1.18-SNAPSHOT") {
-        transitive = false
-    }
+    modRuntimeOnly("curse.maven:fabric-enchantments-498465:${rootProject.fabric_enchantments_id}")
+    modRuntimeOnly("net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}")
 }
 
 processResources {

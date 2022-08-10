@@ -35,14 +35,9 @@ public class TopPlusEventHooks {
      */
     @SuppressWarnings("unused")
     private static Text setActualModName(ItemStack stack, TooltipContext context, List<Text> lines) {
-        String itemModId = Registry.ITEM.getId(stack.getItem()).getNamespace();
-
-        return new LiteralText(
-                ModNameUtil.getActualModName(stack).orElse(
-                        ModNameUtil.getModNameFromId(itemModId).orElse(
-                                StringUtils.capitalize(itemModId)
-                        )
-                )
-        ).formatted(Formatting.BLUE, Formatting.ITALIC);
+        return new LiteralText(ModNameUtil.getActualModId(stack).orElseGet(() -> {
+            String modId = Registry.ITEM.getId(stack.getItem()).getNamespace();
+            return ModNameUtil.getModNameFromId(modId).orElseGet(() -> StringUtils.capitalize(modId));
+        })).formatted(Formatting.BLUE, Formatting.ITALIC);
     }
 }

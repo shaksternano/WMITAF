@@ -1,23 +1,16 @@
 package io.github.shaksternano.wmitaf.client.util.fabric;
 
-import io.github.shaksternano.wmitaf.client.accessor.ModNameHolder;
-import io.github.shaksternano.wmitaf.client.accessor.TextHolder;
-import mcp.mobius.waila.api.ITooltip;
-import mcp.mobius.waila.api.IWailaConfig;
-import mcp.mobius.waila.api.WailaConstants;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.PotionUtil;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.apache.commons.lang3.StringUtils;
@@ -51,26 +44,12 @@ public class ModNameUtil {
      * adds the first enchantment on an enchanted book ItemStack or
      * the first effect on a potion.
      */
-    @SuppressWarnings("ConstantConditions")
     public static Optional<String> getActualModName(ItemStack stack) {
-        ModNameHolder modNameHolder = (ModNameHolder) (Object) stack;
-        String modName = modNameHolder.wmitaf$getModName().orElse(null);
-
-        if (modName == null) {
-            if (modNameNeedsToBeChanged(stack)) {
-                Optional<String> modIdOptional = getActualModId(stack);
-                if (modIdOptional.isPresent()) {
-                    String modId = modIdOptional.orElseThrow();
-                    modName = getModNameFromId(modId).orElse(StringUtils.capitalize(modId));
-                }
-
-                if (modName != null) {
-                    modNameHolder.wmitaf$setModName(modName);
-                }
-            }
+        if (modNameNeedsToBeChanged(stack)) {
+            return getActualModId(stack).map(modId -> getModNameFromId(modId).orElseGet(() -> StringUtils.capitalize(modId)));
+        } else {
+            return Optional.empty();
         }
-
-        return Optional.ofNullable(modName);
     }
 
     /**
@@ -82,23 +61,12 @@ public class ModNameUtil {
      * that adds the first enchantment on an enchanted book ItemStack
      * or the first effect on a potion.
      */
-    @SuppressWarnings("ConstantConditions")
     public static Optional<String> getActualModId(ItemStack stack) {
-        ModNameHolder modNameHolder = (ModNameHolder) (Object) stack;
-        String modId = modNameHolder.wmitaf$getModId().orElse(null);
-
-        if (modId == null) {
-            if (modNameNeedsToBeChanged(stack)) {
-                Optional<Identifier> identifierOptional = getIdentifierFromStackData(stack);
-                modId = identifierOptional.map(Identifier::getNamespace).orElse(null);
-
-                if (modId != null) {
-                    modNameHolder.wmitaf$setModId(modId);
-                }
-            }
+        if (modNameNeedsToBeChanged(stack)) {
+            return getIdentifierFromStackData(stack).map(Identifier::getNamespace);
+        } else {
+            return Optional.empty();
         }
-
-        return Optional.ofNullable(modId);
     }
 
     /**
@@ -123,7 +91,6 @@ public class ModNameUtil {
      */
     private static Optional<Identifier> getIdentifierFromStackData(ItemStack stack) {
         Optional<Identifier> identifierOptional = Optional.empty();
-
         if (stack.isOf(Items.ENCHANTED_BOOK)) {
             identifierOptional = getFirstEnchantmentId(stack);
         } else if (hasStatusEffects(stack)) {
@@ -131,7 +98,6 @@ public class ModNameUtil {
         } else if (hasId(stack.getItem(), PATCHOULI_BOOK_ID)) {
             identifierOptional = getPatchouliBookId(stack);
         }
-
         return identifierOptional;
     }
 
@@ -142,7 +108,8 @@ public class ModNameUtil {
      * @return An {@link Optional} that describes the name of the mod.
      */
     public static Optional<String> getModNameFromId(String namespace) {
-        return FabricLoader.getInstance().getModContainer(namespace)
+        return FabricLoader.getInstance()
+                .getModContainer(namespace)
                 .map(container -> container.getMetadata().getName());
     }
 
@@ -154,15 +121,12 @@ public class ModNameUtil {
      */
     private static Optional<Identifier> getFirstEnchantmentId(ItemStack stack) {
         Set<Enchantment> enchantments = EnchantmentHelper.get(stack).keySet();
-
         for (Enchantment enchantment : enchantments) {
             Identifier enchantmentId = EnchantmentHelper.getEnchantmentId(enchantment);
-
             if (enchantmentId != null) {
                 return Optional.of(enchantmentId);
             }
         }
-
         return Optional.empty();
     }
 
@@ -174,11 +138,9 @@ public class ModNameUtil {
      */
     private static Optional<Identifier> getFirstEffectId(ItemStack stack) {
         List<StatusEffectInstance> effectInstances = PotionUtil.getPotionEffects(stack);
-
         for (StatusEffectInstance effectInstance : effectInstances) {
             StatusEffect effect = effectInstance.getEffectType();
             Identifier effectId = Registry.STATUS_EFFECT.getId(effect);
-
             if (effectId != null) {
                 // Don't make potion types from mods with vanilla effects seem like they're from vanilla, for example a breakable potion from Extra Alchemy with the vanilla night vision effect.
                 if (effectId.getNamespace().equals(Identifier.DEFAULT_NAMESPACE)) {
@@ -188,7 +150,6 @@ public class ModNameUtil {
                 }
             }
         }
-
         return Optional.empty();
     }
 
@@ -206,7 +167,6 @@ public class ModNameUtil {
                 return Optional.of(new Identifier(bookId));
             }
         }
-
         return Optional.empty();
     }
 
@@ -219,12 +179,11 @@ public class ModNameUtil {
      * effects, otherwise false.
      */
     private static boolean hasStatusEffects(ItemStack stack) {
-        return
-                stack.isOf(Items.POTION) ||
-                        stack.isOf(Items.SPLASH_POTION) ||
-                        stack.isOf(Items.LINGERING_POTION) ||
-                        stack.isOf(Items.TIPPED_ARROW) ||
-                        hasId(stack.getItem(), EXTRA_ALCHEMY_BREAKABLE_POTION_ID);
+        return stack.isOf(Items.POTION) ||
+                stack.isOf(Items.SPLASH_POTION) ||
+                stack.isOf(Items.LINGERING_POTION) ||
+                stack.isOf(Items.TIPPED_ARROW) ||
+                hasId(stack.getItem(), EXTRA_ALCHEMY_BREAKABLE_POTION_ID);
     }
 
     /**
@@ -236,28 +195,5 @@ public class ModNameUtil {
      */
     private static boolean hasId(Item item, String id) {
         return Registry.ITEM.getId(item).toString().equals(id);
-    }
-
-    /**
-     * Sets the text of the Waila tooltip for an entity.
-     *
-     * @param tooltip          The tooltip to set the text of.
-     * @param entity           The entity to get the text from.
-     * @param toDisplay        The text to display.
-     * @param needsToBeChanged Whether the mod name needs to be changed.
-     */
-    public static void setWailaTooltip(ITooltip tooltip, Entity entity, String toDisplay, boolean needsToBeChanged) {
-        TextHolder textHolder = ((TextHolder) entity);
-
-        Text textName = textHolder.wmitaf$getTextModName().orElse(null);
-
-        if (textName == null) {
-            if (needsToBeChanged) {
-                textName = IWailaConfig.get().getFormatter().modName(toDisplay);
-                textHolder.wmitaf$setTextModName(textName);
-            }
-        }
-
-        tooltip.setLine(WailaConstants.MOD_NAME_TAG, textName);
     }
 }

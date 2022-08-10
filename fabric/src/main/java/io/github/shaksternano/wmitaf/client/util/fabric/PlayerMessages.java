@@ -1,18 +1,14 @@
-package io.github.shaksternano.wmitaf.client.plugin.waila.fabric;
+package io.github.shaksternano.wmitaf.client.util.fabric;
 
 import com.google.common.collect.ImmutableMap;
-import io.github.shaksternano.wmitaf.client.util.fabric.ModNameUtil;
-import mcp.mobius.waila.api.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.entity.Entity;
 
 import java.util.Map;
+import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
-public enum OtherClientPlayerEntityComponent implements IEntityComponentProvider {
-
-    INSTANCE;
+public class PlayerMessages {
 
     /**
      * Player messages.
@@ -20,21 +16,13 @@ public enum OtherClientPlayerEntityComponent implements IEntityComponentProvider
     private static final Map<String, String> PLAYER_MESSAGES = createPlayerMessagesMap();
 
     /**
-     * Give some players a custom Waila mod name.
+     * Gets the message for a player.
      *
-     * @param tooltip  The tooltip to modify.
-     * @param accessor The accessor for the entity.
-     * @param config   The current plugin configuration.
+     * @param uuid The player's UUID.
+     * @return The message for a player.
      */
-    @Override
-    public void appendTail(ITooltip tooltip, IEntityAccessor accessor, IPluginConfig config) {
-        if (config.getBoolean(WailaConstants.CONFIG_SHOW_MOD_NAME)) {
-            Entity entity = accessor.getEntity();
-            String message = PLAYER_MESSAGES.get(entity.getUuidAsString());
-            if (message != null) {
-                ModNameUtil.setWailaTooltip(tooltip, entity, message, true);
-            }
-        }
+    public static Optional<String> getMessage(String uuid) {
+        return Optional.ofNullable(PLAYER_MESSAGES.get(uuid));
     }
 
     /**

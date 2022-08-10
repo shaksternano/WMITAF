@@ -25,8 +25,7 @@ public class WmitafReiClientPluginImpl implements REIClientPlugin {
     }
 
     /**
-     * Gets the mod ID of an {@link ItemStack}. If the mod ID
-     * is not cached, it will be cached in the ItemStack.
+     * Gets the mod ID of an {@link ItemStack}.
      *
      * @param stack The ItemStack to get the mod ID of.
      * @return The mod ID of the ItemStack.

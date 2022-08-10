@@ -21,15 +21,15 @@
         ],
         "rei": [
             "io.github.shaksternano.wmitaf.client.plugin.rei.fabric.WmitafReiClientPluginImpl"
+        ],
+        "jade": [
+            "io.github.shaksternano.wmitaf.client.plugin.jade.fabric.WmitafJadePlugin"
         ]
     },
-    "mixins": [
-        "wmitaf-common.mixins.json"
-    ],
     "custom": {
         "waila:plugins": {
             "id": "wmitaf:waila_plugin",
-            "initializer": "io.github.shaksternano.wmitaf.client.plugin.waila.fabric.WmitafWailaPluginFabric"
+            "initializer": "io.github.shaksternano.wmitaf.client.plugin.wthit.fabric.WmitafWthitPlugin"
         },
         "notify_gradle_properties_url": "https://raw.githubusercontent.com/ShaksterNano/WMITAF/1.18/gradle.properties",
         "notify_gradle_properties_key": "mod_version"

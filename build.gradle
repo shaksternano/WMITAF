@@ -71,6 +71,16 @@ allprojects {
             name = "Wisp Forest"
             url = "https://maven.wispforest.io"
         }
+
+        maven {
+            name = "Progwml6 maven"
+            url = "https://dvs1.progwml6.com/files/maven"
+        }
+
+        maven {
+            name = "ModMaven"
+            url = "https://modmaven.dev"
+        }
     }
 
     tasks.withType(JavaCompile) {
