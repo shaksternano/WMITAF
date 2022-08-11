@@ -1,6 +1,6 @@
 package io.github.shaksternano.wmitaf.client.plugin.rei.fabric;
 
-import io.github.shaksternano.wmitaf.client.plugin.rei.WmitafReiClientPlugin;
+import io.github.shaksternano.wmitaf.client.plugin.rei.WmitafReiPlugin;
 import io.github.shaksternano.wmitaf.client.util.fabric.ModNameUtil;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.common.entry.settings.EntrySettingsAdapterRegistry;
@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
-public class WmitafReiClientPluginImpl implements REIClientPlugin {
+public class WmitafReiPluginImpl implements REIClientPlugin {
 
     /**
      * Registers the REI plugins.
@@ -21,7 +21,7 @@ public class WmitafReiClientPluginImpl implements REIClientPlugin {
     @SuppressWarnings("UnstableApiUsage")
     @Override
     public void registerEntrySettingsAdapters(EntrySettingsAdapterRegistry registry) {
-        WmitafReiClientPlugin.registerEntrySettingsAdapters(registry);
+        WmitafReiPlugin.registerEntrySettingsAdapters(registry);
     }
 
     /**

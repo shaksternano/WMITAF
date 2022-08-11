@@ -20,7 +20,7 @@
             "io.github.shaksternano.wmitaf.client.fabric.WmitafFabricClient"
         ],
         "rei": [
-            "io.github.shaksternano.wmitaf.client.plugin.rei.fabric.WmitafReiClientPluginImpl"
+            "io.github.shaksternano.wmitaf.client.plugin.rei.fabric.WmitafReiPluginImpl"
         ],
         "jade": [
             "io.github.shaksternano.wmitaf.client.plugin.jade.fabric.WmitafJadePlugin"

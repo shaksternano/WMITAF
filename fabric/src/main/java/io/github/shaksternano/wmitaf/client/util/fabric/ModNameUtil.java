@@ -76,10 +76,9 @@ public class ModNameUtil {
      * @return {@code true} if the ItemStack should have its mod name changed, {@code false} otherwise.
      */
     public static boolean modNameNeedsToBeChanged(ItemStack stack) {
-        return
-                stack.isOf(Items.ENCHANTED_BOOK) ||
-                        hasStatusEffects(stack) ||
-                        hasId(stack.getItem(), PATCHOULI_BOOK_ID);
+        return stack.isOf(Items.ENCHANTED_BOOK) ||
+                hasStatusEffects(stack) ||
+                hasId(stack.getItem(), PATCHOULI_BOOK_ID);
     }
 
     /**

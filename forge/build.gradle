@@ -28,7 +28,10 @@ dependencies {
         transitive = false
     }
 
-    modImplementation("me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}")
+    modCompileOnly("me.shedaniel:RoughlyEnoughItems-api-forge:${rootProject.rei_version}")
+    modCompileOnly("me.shedaniel:RoughlyEnoughItems-default-plugin-forge:${rootProject.rei_version}")
+
+    modRuntimeOnly("me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}")
 
     modRuntimeOnly("curse.maven:ensorcellation-349447:${rootProject.ensorcellation_forge_id}")
     modRuntimeOnly("curse.maven:cofh-core-69162:${rootProject.cofh_core_forge_id}")

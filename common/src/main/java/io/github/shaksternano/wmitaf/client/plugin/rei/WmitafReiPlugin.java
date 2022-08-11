@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.function.BiFunction;
 
 @Environment(EnvType.CLIENT)
-public class WmitafReiClientPlugin {
+public class WmitafReiPlugin {
 
     /**
      * Registers the REI plugins.
