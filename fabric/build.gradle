@@ -98,7 +98,7 @@ unifiedPublishing {
         displayName = "WMITAF Fabric $project.version for Minecraft $rootProject.supported_minecraft_versions"
         changelog = "- Added [Jade](https://www.curseforge.com/minecraft/mc-mods/jade \"Jade\") support."
         releaseType = "release"
-        gameVersions = ["1.19"]
+        gameVersions = ["1.19", "1.19.1", "1.19.2"]
         gameLoaders = ["fabric"]
 
         mainPublication remapJar
