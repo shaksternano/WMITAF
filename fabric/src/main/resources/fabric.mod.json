@@ -31,7 +31,7 @@
             "id": "wmitaf:waila_plugin",
             "initializer": "io.github.shaksternano.wmitaf.client.plugin.waila.fabric.WmitafWailaPlugin"
         },
-        "notify_gradle_properties_url": "https://raw.githubusercontent.com/ShaksterNano/WMITAF/1.18/gradle.properties",
+        "notify_gradle_properties_url": "https://raw.githubusercontent.com/ShaksterNano/WMITAF/1.19/gradle.properties",
         "notify_gradle_properties_key": "mod_version"
     },
     "depends": {
