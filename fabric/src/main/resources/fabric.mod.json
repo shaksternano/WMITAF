@@ -40,13 +40,15 @@
         "java": ">=17"
     },
     "suggests": {
-        "wthit": ">=5.1.0",
         "roughlyenoughitems": ">=9.0.472",
+        "wthit": ">=5.1.0",
+        "jade": ">=7.4.0",
         "top_plus": ">=1.1.0"
     },
     "breaks": {
-        "wthit": "<5.1.0",
         "roughlyenoughitems": "<9.0.472",
+        "wthit": "<5.1.0",
+        "jade": "<7.4.0",
         "top_plus": "<1.1.0"
     }
 }
