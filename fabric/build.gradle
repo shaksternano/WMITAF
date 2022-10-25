@@ -96,7 +96,7 @@ publishing {
 unifiedPublishing {
     project {
         displayName = "WMITAF Fabric $project.version for Minecraft $rootProject.supported_minecraft_versions"
-        changelog = "- Added [Jade](https://www.curseforge.com/minecraft/mc-mods/jade \"Jade\") support."
+        changelog = "- Fixes wrong path for WTHIT plugin."
         releaseType = "release"
         gameVersions = ["1.19", "1.19.1", "1.19.2"]
         gameLoaders = ["fabric"]
