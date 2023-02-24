@@ -11,6 +11,7 @@ import snownee.jade.api.IEntityComponentProvider;
 import snownee.jade.api.ITooltip;
 import snownee.jade.api.Identifiers;
 import snownee.jade.api.config.IPluginConfig;
+import snownee.jade.api.config.IWailaConfig;
 
 @Environment(EnvType.CLIENT)
 public enum JadePlayerModNameProvider implements IEntityComponentProvider {
@@ -28,7 +29,7 @@ public enum JadePlayerModNameProvider implements IEntityComponentProvider {
     public void appendTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {
         Entity player = accessor.getEntity();
         PlayerMessages.getMessage(player.getUuidAsString()).ifPresent(
-                message -> tooltip.add(Text.of(String.format(config.getWailaConfig().getFormatting().getModName(), message)))
+                message -> tooltip.add(Text.of(String.format(IWailaConfig.get().getFormatting().getModName(), message)))
         );
     }
 

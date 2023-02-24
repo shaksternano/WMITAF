@@ -11,8 +11,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.PotionUtil;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -77,8 +77,8 @@ public class ModNameUtil {
      */
     public static boolean modNameNeedsToBeChanged(ItemStack stack) {
         return stack.isOf(Items.ENCHANTED_BOOK) ||
-                hasStatusEffects(stack) ||
-                hasId(stack.getItem(), PATCHOULI_BOOK_ID);
+            hasStatusEffects(stack) ||
+            hasId(stack.getItem(), PATCHOULI_BOOK_ID);
     }
 
     /**
@@ -108,8 +108,8 @@ public class ModNameUtil {
      */
     public static Optional<String> getModNameFromId(String namespace) {
         return FabricLoader.getInstance()
-                .getModContainer(namespace)
-                .map(container -> container.getMetadata().getName());
+            .getModContainer(namespace)
+            .map(container -> container.getMetadata().getName());
     }
 
     /**
@@ -139,11 +139,11 @@ public class ModNameUtil {
         List<StatusEffectInstance> effectInstances = PotionUtil.getPotionEffects(stack);
         for (StatusEffectInstance effectInstance : effectInstances) {
             StatusEffect effect = effectInstance.getEffectType();
-            Identifier effectId = Registry.STATUS_EFFECT.getId(effect);
+            Identifier effectId = Registries.STATUS_EFFECT.getId(effect);
             if (effectId != null) {
                 // Don't make potion types from mods with vanilla effects seem like they're from vanilla, for example a breakable potion from Extra Alchemy with the vanilla night vision effect.
                 if (effectId.getNamespace().equals(Identifier.DEFAULT_NAMESPACE)) {
-                    return Optional.of(Registry.ITEM.getId(stack.getItem()));
+                    return Optional.of(Registries.ITEM.getId(stack.getItem()));
                 } else {
                     return Optional.of(effectId);
                 }
@@ -179,10 +179,10 @@ public class ModNameUtil {
      */
     private static boolean hasStatusEffects(ItemStack stack) {
         return stack.isOf(Items.POTION) ||
-                stack.isOf(Items.SPLASH_POTION) ||
-                stack.isOf(Items.LINGERING_POTION) ||
-                stack.isOf(Items.TIPPED_ARROW) ||
-                hasId(stack.getItem(), EXTRA_ALCHEMY_BREAKABLE_POTION_ID);
+            stack.isOf(Items.SPLASH_POTION) ||
+            stack.isOf(Items.LINGERING_POTION) ||
+            stack.isOf(Items.TIPPED_ARROW) ||
+            hasId(stack.getItem(), EXTRA_ALCHEMY_BREAKABLE_POTION_ID);
     }
 
     /**
@@ -193,6 +193,6 @@ public class ModNameUtil {
      * @return True if the ID of the item matches the string passed as an argument.
      */
     private static boolean hasId(Item item, String id) {
-        return Registry.ITEM.getId(item).toString().equals(id);
+        return Registries.ITEM.getId(item).toString().equals(id);
     }
 }

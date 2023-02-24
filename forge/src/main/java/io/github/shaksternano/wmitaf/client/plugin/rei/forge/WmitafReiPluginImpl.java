@@ -3,7 +3,7 @@ package io.github.shaksternano.wmitaf.client.plugin.rei.forge;
 import io.github.shaksternano.wmitaf.client.plugin.rei.WmitafReiPlugin;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.common.entry.settings.EntrySettingsAdapterRegistry;
-import me.shedaniel.rei.forge.REIPlugin;
+import me.shedaniel.rei.forge.REIPluginClient;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -11,7 +11,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Optional;
 
 @OnlyIn(Dist.CLIENT)
-@REIPlugin
+@REIPluginClient
 public class WmitafReiPluginImpl implements REIClientPlugin {
 
     /**

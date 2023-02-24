@@ -6,9 +6,9 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.registry.Registry;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -35,7 +35,7 @@ public class TopPlusEventHooks {
     @SuppressWarnings("unused")
     private static Text setActualModName(ItemStack stack, TooltipContext context, List<Text> lines) {
         return Text.literal(ModNameUtil.getActualModId(stack).orElseGet(() -> {
-            String modId = Registry.ITEM.getId(stack.getItem()).getNamespace();
+            String modId = Registries.ITEM.getId(stack.getItem()).getNamespace();
             return ModNameUtil.getModNameFromId(modId).orElseGet(() -> StringUtils.capitalize(modId));
         })).formatted(Formatting.BLUE, Formatting.ITALIC);
     }

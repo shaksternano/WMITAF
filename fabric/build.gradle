@@ -96,9 +96,9 @@ publishing {
 unifiedPublishing {
     project {
         displayName = "WMITAF Fabric $project.version for Minecraft $rootProject.supported_minecraft_versions"
-        changelog = "- Fixes wrong path for WTHIT plugin."
+        changelog = "- Updated to 1.19.3"
         releaseType = "release"
-        gameVersions = ["1.19", "1.19.1", "1.19.2"]
+        gameVersions = ["1.19.3"]
         gameLoaders = ["fabric"]
 
         mainPublication remapJar
@@ -116,6 +116,7 @@ unifiedPublishing {
 
             optional {
                 curseforge = "jade"
+                modrinth = "jade"
             }
 
             optional {
@@ -125,7 +126,8 @@ unifiedPublishing {
 
         if (project.hasProperty("CURSEFORGE_TOKEN") || System.getenv("CURSEFORGE_TOKEN") != null) {
             curseforge {
-                token = project.hasProperty("CURSEFORGE_TOKEN") ? project.property("CURSEFORGE_TOKEN") : System.getenv("CURSEFORGE_TOKEN")
+                token = project.hasProperty("CURSEFORGE_TOKEN") ? project.property("CURSEFORGE_TOKEN")
+                                                                : System.getenv("CURSEFORGE_TOKEN")
                 id = rootProject.curseforge_project_id
                 gameVersions.addAll("Java 17")
             }
@@ -133,7 +135,8 @@ unifiedPublishing {
 
         if (project.hasProperty("MODRINTH_TOKEN") || System.getenv("MODRINTH_TOKEN") != null) {
             modrinth {
-                token = project.hasProperty("MODRINTH_TOKEN") ? project.property("MODRINTH_TOKEN") : System.getenv("MODRINTH_TOKEN")
+                token = project.hasProperty("MODRINTH_TOKEN") ? project.property("MODRINTH_TOKEN")
+                                                              : System.getenv("MODRINTH_TOKEN")
                 id = rootProject.modrinth_project_id
                 version = "mc$rootProject.minecraft_version-$project.version-fabric"
             }

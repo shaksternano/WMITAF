@@ -35,20 +35,20 @@
         "notify_gradle_properties_key": "mod_version"
     },
     "depends": {
-        "fabricloader": ">=0.11.0",
-        "minecraft": ">=1.19",
+        "fabricloader": ">=0.14.0",
+        "minecraft": ">=1.19.3",
         "java": ">=17"
     },
     "suggests": {
-        "roughlyenoughitems": ">=9.0.472",
-        "wthit": ">=5.1.0",
-        "jade": ">=7.4.0",
+        "roughlyenoughitems": ">=10.0.0",
+        "wthit": ">=6.0.0",
+        "jade": ">=9.0.0",
         "top_plus": ">=1.1.0"
     },
     "breaks": {
-        "roughlyenoughitems": "<9.0.472",
-        "wthit": "<5.1.0",
-        "jade": "<7.4.0",
+        "roughlyenoughitems": "<10.0.0",
+        "wthit": "<6.0.0",
+        "jade": "<9.0.0",
         "top_plus": "<1.1.0"
     }
 }
